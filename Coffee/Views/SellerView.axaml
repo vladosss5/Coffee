@@ -2,8 +2,237 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:coffee="clr-namespace:Coffee"
+        xmlns:viewModels="clr-namespace:Coffee.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Coffee.Views.SellerView"
-        Title="SellerView">
-    Welcome to Avalonia!
+        x:DataType="viewModels:SellerVM"
+        x:CompileBindings="True"
+        x:Name="ThisWindow"
+        Title="SellerView"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="True">
+        
+        <Window.Styles>
+                <StyleInclude Source="/Styles/AppStyle.axaml" />
+        </Window.Styles>
+        
+        <Window.Resources>
+                <coffee:BitmapAssetValueConverter x:Key="BitmapAssetValueConverter"/>
+        </Window.Resources>
+        
+        
+<Grid Margin="10">
+        <Border Grid.Column="0" Grid.Row="0" 
+                Background="Azure"
+                CornerRadius="25"
+                Margin="5">
+                <TextBlock  Text="Категории" FontSize="35"
+                            HorizontalAlignment="Center" Margin="15"
+                            FontWeight="Bold"/>
+        </Border>
+        
+        <Border Grid.Column="1" Grid.Row="0" 
+                CornerRadius="25"
+                Margin="5"
+                Background="Azure">
+                <TextBlock  Text="Блюда по категории" FontSize="35"
+                            HorizontalAlignment="Center" Margin="15"
+                            FontWeight="Bold"/>
+        </Border>
+        
+        <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
+                <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="3"
+                        Background="Azure" Margin="5"
+                        CornerRadius="25"/>
+                
+                <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                         Name="CategoryGrid"
+                         ItemsSource="{Binding Category}"
+                         SelectedItem="{Binding SelectCategory}"
+                         Background="Transparent" Margin="5,5,5,5"
+                         VerticalAlignment="Stretch" CornerRadius="25,25,0,0">
+                        <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                        <Grid>
+                                                <TextBlock Text="{Binding Name}"
+                                                           HorizontalAlignment="Stretch"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="24"/>
+                                                <Image Source="{Binding Photo,
+                                        Converter={StaticResource BitmapAssetValueConverter}}"
+                                                       MaxHeight="20" VerticalAlignment="Center"
+                                                       HorizontalAlignment="Right" Margin="5"/>
+                                        </Grid>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>
+                </ListBox>
+                
+                <TextBlock Grid.Column="1" Grid.Row="1"
+                           Text="{Binding PrePrice}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           FontWeight="Bold"
+                           FontSize="20"/>
+                
+                <TextBlock Grid.Column="0" Grid.Row="1" 
+                           Text="Итого:" VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontWeight="Bold"
+                           FontSize="20"/>
+                
+                <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
+                        VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                        Content="Оплатить!" FontSize="20" FontWeight="Bold"
+                        Background="Azure"
+                        HorizontalContentAlignment="Center"
+                        CornerRadius="0, 0,25,25"
+                        Padding="15" Margin="5,15,5, 5"
+                        Command="{ReflectionBinding BuyButton}"
+                        CommandParameter="{ReflectionBinding  ElementName=ThisWindow}"/>
+
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+        </Grid>
+        
+        <ListBox Name="DishListBox" 
+                 ItemsSource="{Binding DishesInSelectCat}"
+                 SelectedItem="{Binding SelectedDishes}"
+                 CornerRadius="25"
+                 Margin="5"
+                 Padding="5"
+                 Background="Azure"
+                 Opacity="0.7"
+                 Grid.Row = "1" Grid.Column="1">
+                <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                                <WrapPanel />
+                        </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                        <DataTemplate>
+                                <Grid Opacity="1.4" Margin="10">
+                                        <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
+                                               Source="{Binding Photo,
+                                                Converter={StaticResource BitmapAssetValueConverter}}"
+                                               Height="200" Width="200"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Margin="5"/>
+                                        <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" 
+                                                   Text="{Binding Name}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="20"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                                                   Text="{Binding Price}"
+                                                   HorizontalAlignment="Center"
+                                                   Margin="5"
+                                                   FontSize="16"/>
+                                        <Button Grid.Column="0" Grid.Row="3"
+                                                Width="50" Height="50"
+                                                CornerRadius="50"
+                                                Background="Transparent"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Command="{Binding ElementName=ThisWindow, Path=CountMinus}" 
+                                                CommandParameter="{Binding }">
+                                                <Image Source="/Assets/minus.png"/>
+                                        </Button>
+                                        <TextBlock Grid.Column="1" Grid.Row="3"
+                                                   Text="{Binding Count}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="20"/>
+                                        <Button Grid.Column="2" Grid.Row="3"
+                                                Width="50" Height="50"
+                                                CornerRadius="50"
+                                                Background="Transparent"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Command="{Binding ElementName=ThisWindow, Path=CountPlus}" 
+                                                CommandParameter="{Binding }">
+                                                <Image Source="/Assets/plus.png"/>
+                                        </Button>
+        
+                                        <Grid.RowDefinitions>
+                                                <RowDefinition MaxHeight="200"/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition MaxHeight="300"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                </Grid>
+                        </DataTemplate>
+                </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <ListBox Name="SelectDishList"
+                 ItemsSource="{Binding DishesInCart}"
+                 CornerRadius="25"
+                 Margin="5"
+                 Padding="5"
+                 Background="Azure"
+                 Opacity="0.7"
+                
+                 VerticalAlignment="Stretch"
+                 Grid.Row="2" Grid.Column="1">
+                <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                                <WrapPanel MaxHeight="200" Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                        <DataTemplate>
+                                <Grid>
+                                        <Image Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" 
+                                               Source="{Binding Photo,
+                                               Converter={StaticResource BitmapAssetValueConverter}}"
+                                               Height="130" Width="180"
+                                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               Margin="5"/>
+                                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Name}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Count}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"/>
+                                        
+                                        <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                </Grid>
+                        </DataTemplate>
+                </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition MaxHeight="200"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+</Grid>
 </Window>

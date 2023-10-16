@@ -2,8 +2,96 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Coffee.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Coffee.Views.MainWindow"
-        Title="MainWindow">
-    Welcome to Avalonia!
+        x:Name="ThisWindow"
+        Title="MainWindow"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="True">
+        
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Window.Styles>
+        <StyleInclude Source="/Styles/AppStyle.axaml" />
+    </Window.Styles>
+
+     <Panel>
+        <Grid>
+            <Border  Grid.Row="0" Grid.Column="1" Background="Azure" Opacity="0.8"
+                     Width="200" Height="200" VerticalAlignment="Center" CornerRadius="20">
+                <StackPanel Opacity="1.2">
+                    <Button Command="{Binding Authorization}"
+                            CommandParameter="{Binding ElementName=ThisWindow}"
+                            Height="160" Width="200"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            CornerRadius="20">
+                        <Image Width="120" Height="120"
+                               Source="/Assets/Enter.png"/>
+                    </Button>
+    
+                    <TextBlock Background="Transparent" FontSize="20"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Center"
+                               FontStyle="Normal"
+                               FontWeight="Bold"
+                               Text="Авторизоваться"/>
+                </StackPanel>
+            </Border>
+    
+            <Border  Grid.Row="0" Grid.Column="0" Background="Azure" Opacity="0.8"
+                     Width="150" Height="140" VerticalAlignment="Center" CornerRadius="20">
+                <StackPanel Opacity="1.2">
+                    <Button Command="{Binding TopDishes}"
+                            CommandParameter="{Binding ElementName=ThisWindow}"
+                            Width="150" Height="110"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            CornerRadius="20">
+                        <Image Width="80" Height="80"
+                               Source="/Assets/goblet.png"/>
+                    </Button>
+    
+                    <TextBlock Background="Transparent" FontSize="16"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Center"
+                               FontStyle="Normal"
+                               FontWeight="Bold"
+                               Text="Топ блюд"/>
+                </StackPanel>
+            </Border>
+    
+            <Border Grid.Column="2" Background="Azure" Opacity="0.8"
+                     Width="150" Height="140" VerticalAlignment="Center" CornerRadius="20">
+                <StackPanel Opacity="1.2">
+                    <Button Command="{Binding Seller}"
+                            CommandParameter="{Binding ElementName=ThisWindow}"
+                            Width="150" Height="110"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            CornerRadius="20">
+                        <Image Width="80" Height="80"
+                               Source="/Assets/seller.png"/>
+                    </Button>
+    
+                    <TextBlock Background="Transparent" FontSize="16"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Center"
+                               FontStyle="Normal"
+                               FontWeight="Bold"
+                               Text="Для покупателя"/>
+                </StackPanel>
+            </Border>
+    
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Panel>
 </Window>

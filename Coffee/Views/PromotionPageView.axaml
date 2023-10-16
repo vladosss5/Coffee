@@ -2,7 +2,122 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Coffee.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Coffee.Views.PromotionPageView">
-    Welcome to Avalonia!
+             x:Class="Coffee.Views.PromotionPageView"
+             x:DataType="vm:PromotionPageViewModel"
+             x:Name="ThisPage"
+             x:CompileBindings="True">
+    
+    <Design.DataContext>
+        <vm:PromotionPageViewModel/>
+    </Design.DataContext>
+   
+    <Grid Margin="5">
+        <Border Grid.Column="0"
+                Background="Transparent" Margin="10">
+            <DataGrid Name="PromotionGrid"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding Promotion}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Header="№" 
+                                        Binding="{Binding IdPromotion}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Блюдо" 
+                                        Binding="{Binding IdDishNavigation.Name}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="%" 
+                                        Binding="{Binding DiscountPercent}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Итого" 
+                                         Binding="{Binding TotalPrice}"/> 
+                    <DataGridTextColumn IsReadOnly="True" Header="Дата окончания" 
+                                        Binding="{Binding FinishDate}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Активность"
+                                        Binding="{Binding Activity}"/>
+                    <DataGridTemplateColumn Header="🗙">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button HorizontalAlignment="Center" 
+                                        Height="20" Width="20"
+                                        Background="DarkOrange"
+                                        Command="{Binding ElementName=ThisPage, Path=RemovePromotion}"
+                                        CommandParameter="{Binding }"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        
+        <Border Grid.Column="1"
+                Background="Transparent" Margin="10">
+            <Grid>
+                <DataGrid Name="NewPromotionGrid"
+                          HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding Dishes}"
+                          IsReadOnly="True"
+                          Grid.Row="0" Margin="5">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Header="№" 
+                                            Binding="{Binding IdDish}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Блюдо" 
+                                            Binding="{Binding Name}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Цена" 
+                                            Binding="{Binding Price}"/>
+                        <DataGridTemplateColumn Header="✔">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button HorizontalAlignment="Center" 
+                                            Height="20" Width="20"
+                                            Background="DarkOrange"
+                                            Command="{Binding ElementName=ThisPage, Path=AddDishPrePromotion}"
+                                            CommandParameter="{Binding }"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid Grid.Row="1" Margin="5" Name="SelectedDishGrid"
+                          ItemsSource="{Binding DishesLists}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Header="№" 
+                                            Binding="{Binding IdDish}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Блюдо" 
+                                            Binding="{Binding Name}"/>
+                        <DataGridTextColumn IsReadOnly="True" Header="Цена" 
+                                            Binding="{Binding Price}"/>
+                        <DataGridTemplateColumn Header="🗙">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button HorizontalAlignment="Center" 
+                                            Height="20" Width="20"
+                                            Background="DarkOrange"
+                                            Command="{Binding ElementName=ThisPage, Path=RemoveDishPrePromotion}"
+                                            CommandParameter="{Binding }"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBox Grid.Row="2" Margin="5" Watermark="Процент скидки" 
+                         Text="{Binding DiscountPercent}"/>
+                <DatePicker Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                            Margin="5" 
+                            SelectedDate="{Binding DateEndAction}"/>
+                <Button Grid.Row="4" Content="Скинуть!" HorizontalAlignment="Center" Margin="10"
+                        Background="DarkOrange" Command="{Binding AddPromotion}"/>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition MaxHeight="60"/>
+                </Grid.RowDefinitions>
+            </Grid>
+        </Border>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+    </Grid>
 </UserControl>

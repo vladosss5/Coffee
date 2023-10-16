@@ -2,8 +2,79 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Coffee.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Coffee.Views.AdminMainView"
-        Title="AdminMainView">
-    Welcome to Avalonia!
+        x:DataType="vm:AdminMainViewModel"
+        x:Name="ThisWindow"
+        Title="AdminMainView"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="True">
+        
+        <Design.DataContext>
+                <vm:AdminMainViewModel/>
+        </Design.DataContext>
+        
+        <Window.Styles>
+                <StyleInclude Source="/Styles/AppStyle.axaml" />
+        </Window.Styles>
+        
+        <Grid>
+                <Border Grid.Column="0" Background="Azure"
+                        Margin="5" CornerRadius="10">
+                        <StackPanel Background="Transparent"
+                                    Margin="10">
+                                <Button Content="Меню блюд" HorizontalContentAlignment="Center" 
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                        Height="30" Margin="5"
+                                        Command="{Binding OpenMenuDishPage}"></Button>
+                    
+                                <Button Content="Сотрудники" HorizontalContentAlignment="Center" 
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                        Height="30" Margin="5"
+                                        Command="{Binding OpenEmployeesPage}"></Button>
+                                
+                                <Button Content="Акции" HorizontalContentAlignment="Center" 
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                        Height="30" Margin="5"
+                                        Command="{Binding OpenPromotionPage}"></Button>
+                    
+                                <Button Content="Создать отчёт" HorizontalContentAlignment="Center" 
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                        Height="30" Margin="5"
+                                        Command="{Binding CreateReport}" 
+                                        CommandParameter="{Binding ElementName=ThisWindow}" ></Button>
+                    
+                                <Button Content="Профиль" HorizontalContentAlignment="Center" 
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                        Height="30" Margin="5"
+                                        Command="{Binding OpenProfilePage}"/>
+                                
+                                <Button Content="Выйти" HorizontalContentAlignment="Center" 
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                        Height="30" Margin="5"
+                                        Command="{Binding ExitProfile}"
+                                        CommandParameter="{Binding ElementName=ThisWindow}"></Button>
+                        </StackPanel>
+                </Border>
+                
+                <Border Grid.Column="1" Background="Azure" Margin="3" 
+                        CornerRadius="10" Opacity="0.7"/>
+                
+                <TransitioningContentControl Grid.Column="1" Margin="5" 
+                                             Background="Transparent"
+                                             Content="{Binding CurrentPage}" />
+                
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+        </Grid>
 </Window>

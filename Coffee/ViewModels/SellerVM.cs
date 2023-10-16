@@ -132,6 +132,7 @@ public class SellerVM : ViewModelBase
         order.DateAndTime = DateTime.Now;
         order.FullPrice = _dishesInCart.Sum(x => x.Price * x.Count);
         order.OrderDishes = dishes.Select(x => new OrderDish() { IdDishNavigation = x, Count = x.Count }).ToList();
+        order.IdStstus = 1;
         Helper.GetContext().Orders.Add(order);
         Helper.GetContext().Orders.UpdateRange();
         Helper.GetContext().SaveChanges();

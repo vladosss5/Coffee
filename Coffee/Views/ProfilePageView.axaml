@@ -2,7 +2,89 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Coffee.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Coffee.Views.ProfilePageView">
-    Welcome to Avalonia!
+             x:Class="Coffee.Views.ProfilePageView"
+             x:DataType="vm:ProfilePageViewModel"
+             x:Name="ThisPage">
+    
+    <Design.DataContext>
+        <vm:ProfilePageViewModel/>
+    </Design.DataContext>
+    
+    <Grid Margin="5" Background="Transparent"
+          VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch">
+        
+        <TextBlock Text="Профиль"
+                   Grid.Row="0" Grid.Column="0"  Margin="3"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="30"
+                   FontWeight="Bold"/>
+        
+        <TextBlock Text="Фамилия:"
+                   Grid.Row="1" Grid.Column="0" Margin="3"
+                   HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding _AuthUserNow.Sname}"
+                   Grid.Row="1" Grid.Column="0"
+                   HorizontalAlignment="Right"/>
+        
+        <TextBlock Text="Имя:"
+                   Grid.Row="2" Margin="3"
+                   HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding _AuthUserNow.Fname}"
+                   Grid.Row="2"
+                   HorizontalAlignment="Right"/>
+        
+        <TextBlock Text="Отчество:"
+                   Grid.Row="3" Margin="3"
+                   HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding _AuthUserNow.Lname}"
+                   Grid.Row="3"
+                   HorizontalAlignment="Right"/>
+        
+        <TextBlock Text="Сменить пароль:"
+                   Grid.Row="4" Grid.Column="0"  Margin="3"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontSize="16"
+                   FontWeight="Bold"/>
+        
+        <TextBox Grid.Row="5" Grid.Column="0"  Margin="3" 
+                 Watermark="Актуальный пароль"
+                 PasswordChar="*"
+                 Text="{Binding OldPassword}"/>
+        <TextBox Grid.Row="6" Grid.Column="0"  Margin="3" 
+                 Watermark="Новый пароль"
+                 PasswordChar="*"
+                 Text="{Binding FirstPassword}"/>
+        <TextBox Grid.Row="7" Grid.Column="0"  Margin="3" 
+                 Watermark="Повторить новый пароль"
+                 PasswordChar="*"
+                 Text="{Binding SecondPassword}"/>
+        
+        <Button Content="Сменить пароль"
+                Command="{Binding ChangePassword}"
+                CommandParameter="{Binding $parent[Window]}"
+                Grid.Row="8" Grid.Column="0"
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                CornerRadius="10"
+                Height="30" Width="130" Margin="10" Background="DarkOrange"/>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- <Grid.ColumnDefinitions> -->
+        <!--     <ColumnDefinition Width="*"/> -->
+        <!--     <ColumnDefinition Width="*"/> -->
+        <!-- </Grid.ColumnDefinitions> -->
+    </Grid>
 </UserControl>

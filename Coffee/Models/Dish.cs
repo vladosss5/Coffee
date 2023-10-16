@@ -12,8 +12,7 @@ public partial class Dish
 
     public float Price { get; set; }
 
-    public string Photo { get; set; } = null!;
-
+    public string? Photo { get; set; }
    
     [NotMapped] public int Count { get; set; } = 1;
     public virtual ICollection<DishCategory> DishCategories { get; set; } = new List<DishCategory>();
