@@ -185,7 +185,6 @@
                  Padding="5"
                  Background="Azure"
                  Opacity="0.7"
-                
                  VerticalAlignment="Stretch"
                  Grid.Row="2" Grid.Column="1">
                 <ListBox.ItemsPanel>
