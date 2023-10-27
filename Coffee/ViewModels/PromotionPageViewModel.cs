@@ -85,24 +85,14 @@ public class PromotionPageViewModel : PageViewModelBase
         OpenPromotionPage = false;
         Promotion = new ObservableCollection<Promotion>(Helper.GetContext().Promotions.ToList());
         Dishes = new ObservableCollection<Dish>(Helper.GetContext().Dishes.ToList());
-        FillingPrice();
+        FillingStatus();
         AddPromotion = ReactiveCommand.Create(AddPromotionImpl);
     }
 
-    private void FillingPrice()
+    private void FillingStatus()
     {
-        float percent = 0.01f;
         for (int i = 0; i < Promotion.Count; ++i)
         {
-            for (int j = 0; j < Dishes.Count; ++j)
-            {
-                if (Promotion[i].IdDish == Dishes[j].IdDish)
-                {
-                    Promotion[i].TotalPrice = 
-                        Dishes[j].Price - (Promotion[i].DiscountPercent * percent * Dishes[j].Price);
-                }
-            }
-
             if (Promotion[i].FinishDate < DateTime.Now)
             {
                 Promotion[i].Activity = "Не активно";
@@ -122,13 +112,14 @@ public class PromotionPageViewModel : PageViewModelBase
             _newPromotion.IdDish = d.IdDish;
             _newPromotion.FinishDate = _dateEndAction.DateTime;
             _newPromotion.DiscountPercent = _discountPercent;
+            _newPromotion.TotalPrice = d.Price - (d.Price * _discountPercent * 0.01);
             context.Promotions.Add(_newPromotion);
             context.SaveChanges();
             _newPromotion = new Promotion();
         }
         
         DishesLists.Clear();
-        MessageBoxManager.GetMessageBoxStandard("Caption", "Акция добавлена", ButtonEnum.Ok);
+        MessageBoxManager.GetMessageBoxStandard("Успех", "Акция добавлена", ButtonEnum.Ok).ShowAsync();
     }
 
     public void AddDishPrePromotionImpl(Dish dish)
@@ -141,8 +132,8 @@ public class PromotionPageViewModel : PageViewModelBase
             {
                 IdDish = dish.IdDish,
                 Name = dish.Name,
-                Price = dish.Price * dish.Count,
-                Count = dish.Count,
+                Price = dish.Price * dish.CountDishes,
+                CountDishes = dish.CountDishes,
                 Photo = dish.Photo
             });
         }
@@ -153,8 +144,8 @@ public class PromotionPageViewModel : PageViewModelBase
             {
                 IdDish = dish.IdDish,
                 Name = dish.Name,
-                Price = dish.Price * dish.Count,
-                Count = dish.Count,
+                Price = dish.Price * dish.CountDishes,
+                CountDishes = dish.CountDishes,
                 Photo = dish.Photo
             });
         }

@@ -11,7 +11,7 @@ public partial class OrderDish
 
     public int IdOrder { get; set; }
 
-    public int Count { get; set; }
+    public int CountDishes { get; set; }
 
     public virtual Dish IdDishNavigation { get; set; } = null!;
 

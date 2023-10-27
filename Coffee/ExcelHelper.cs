@@ -15,7 +15,7 @@ public class ExcelHelper : IDisposable
         _excel = new Excel.Application();
     }
 
-    public void Dispose()
+    public async void Dispose()
     {
         try
         {
@@ -65,7 +65,7 @@ public class ExcelHelper : IDisposable
         }
     }
 
-    public void Save()
+    public async void Save()
     {
         if (!string.IsNullOrEmpty( _filePath))
         {

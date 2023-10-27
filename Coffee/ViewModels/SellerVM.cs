@@ -77,7 +77,7 @@ public class SellerVM : ViewModelBase
                 }
             }
 
-            PrePrice = _dishesInCart.Sum(x => x.Price * x.Count);
+            PrePrice = _dishesInCart.Sum(x => x.Price * x.CountDishes);
         }
      
     }
@@ -130,16 +130,16 @@ public class SellerVM : ViewModelBase
 
         Order order = new Order();
         order.DateAndTime = DateTime.Now;
-        order.FullPrice = _dishesInCart.Sum(x => x.Price * x.Count);
-        order.OrderDishes = dishes.Select(x => new OrderDish() { IdDishNavigation = x, Count = x.Count }).ToList();
-        order.IdStstus = 1;
+        order.FullPrice = _dishesInCart.Sum(x => x.Price * x.CountDishes);
+        order.OrderDishes = dishes.Select(x => new OrderDish() { IdDishNavigation = x, CountDishes = x.CountDishes }).ToList();
+        order.IdStatus = 1;
         Helper.GetContext().Orders.Add(order);
         Helper.GetContext().Orders.UpdateRange();
         Helper.GetContext().SaveChanges();
 
         foreach (var d in DishesInSelectCat) //Приводит количество блюд к изначальному значению
         {
-            d.Count = 1;
+            d.CountDishes = 1;
         }
         CheckView cvw = new CheckView();
         cvw.Show();
@@ -152,13 +152,13 @@ public class SellerVM : ViewModelBase
         
         if (f == '+')
         {
-            dish.Count += 1;
+            dish.CountDishes += 1;
         }
         else
         {
-            if (dish.Count > 0)
+            if (dish.CountDishes > 0)
             {
-                dish.Count -= 1;
+                dish.CountDishes -= 1;
             }
         }
 

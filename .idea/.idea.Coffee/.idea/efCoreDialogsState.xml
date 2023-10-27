@@ -8,7 +8,7 @@
         <entry key="Common:dbContextName" value="MyDbContext" />
         <entry key="Common:generateOnConfiguring" value="true" />
         <entry key="Common:noBuild" value="false" />
-        <entry key="Common:outputFolder" value="Models" />
+        <entry key="Common:outputFolder" value="ent" />
         <entry key="Common:provider" value="Npgsql.EntityFrameworkCore.PostgreSQL" />
         <entry key="Common:schemas" value="" />
         <entry key="Common:tables" value="" />

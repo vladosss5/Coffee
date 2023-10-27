@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\V-pc\\Documents\\yчёба\\Курсовая 2\\Разработка\\Coffee\\Coffee\\Coffee.csproj": {}
+    "C:\\Users\\kipor\\Desktop\\Курсовая 2\\Разработка\\Coffee\\Coffee\\Coffee.csproj": {}
   },
   "projects": {
-    "C:\\Users\\V-pc\\Documents\\yчёба\\Курсовая 2\\Разработка\\Coffee\\Coffee\\Coffee.csproj": {
+    "C:\\Users\\kipor\\Desktop\\Курсовая 2\\Разработка\\Coffee\\Coffee\\Coffee.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\V-pc\\Documents\\yчёба\\Курсовая 2\\Разработка\\Coffee\\Coffee\\Coffee.csproj",
+        "projectUniqueName": "C:\\Users\\kipor\\Desktop\\Курсовая 2\\Разработка\\Coffee\\Coffee\\Coffee.csproj",
         "projectName": "Coffee",
-        "projectPath": "C:\\Users\\V-pc\\Documents\\yчёба\\Курсовая 2\\Разработка\\Coffee\\Coffee\\Coffee.csproj",
-        "packagesPath": "C:\\Users\\V-pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\V-pc\\Documents\\yчёба\\Курсовая 2\\Разработка\\Coffee\\Coffee\\obj\\",
+        "projectPath": "C:\\Users\\kipor\\Desktop\\Курсовая 2\\Разработка\\Coffee\\Coffee\\Coffee.csproj",
+        "packagesPath": "C:\\Users\\kipor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kipor\\Desktop\\Курсовая 2\\Разработка\\Coffee\\Coffee\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\V-pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kipor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -109,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

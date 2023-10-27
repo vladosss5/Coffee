@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reactive;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using Coffee.Models;
 using ReactiveUI;
@@ -16,12 +18,14 @@ namespace Coffee.ViewModels;
 
 public class MenuPageViewModel : PageViewModelBase
 {
-    private string _PathImage;
-    public string PathImage
-    {
-        get => PathImage;
-        set => this.RaiseAndSetIfChanged(ref _PathImage, value);
-    }
+    public string Path;
+    
+    // private string _PathImage;
+    // public string PathImage
+    // {
+    //     get => PathImage;
+    //     set => this.RaiseAndSetIfChanged(ref _PathImage, value);
+    // }
 
     private string _Name;
     public string Name
@@ -83,26 +87,25 @@ public class MenuPageViewModel : PageViewModelBase
         protected set => throw new NotSupportedException();
     }
     
-    public ICommand AddDish { get; }
-    public ReactiveCommand<Window, Unit> SelectImge { get; }
+    public ReactiveCommand<Unit, Unit> AddDish { get; }
+    public ReactiveCommand<Unit, Unit> SelectImge { get; }
 
     public MenuPageViewModel()
     {
         Dish = new ObservableCollection<Dish>(Helper.GetContext().Dishes.ToList());
         Category = new ObservableCollection<Category>(Helper.GetContext().Categories.ToList());
+        
         OpenMenuDishesPage = false;
+        
         AddDish = ReactiveCommand.Create(AddDishImpl);
-        SelectImge = ReactiveCommand.Create<Window>(SelectImgeImpl);
+        SelectImge = ReactiveCommand.Create(SelectImgeImpl);
     }
 
-    Task<IReadOnlyList<IStorageFile>> OpenFilePickerAsync(FilePickerOpenOptions options)
+    private void SelectImgeImpl()
     {
-        throw new NotImplementedException();
-    }
-
-    private void SelectImgeImpl(Window obj)
-    {
-        var storage = obj.StorageProvider;
+        // Path = @"D:\Изображения\photos\IMG_20210103_130822.jpeg";
+        // Process.Start(new ProcessStartInfo{FileName = "explorer"});
+        // File.Move(Path, @"C:\Users\V-pc\Documents\yчёба\Курсовая 2\Разработка\Coffee\Coffee\AssetsUser\IMG_20210103_130822.jpeg", true);
     }
     
     private void AddDishImpl()

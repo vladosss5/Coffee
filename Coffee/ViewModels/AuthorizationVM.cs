@@ -49,8 +49,7 @@ public class AuthorizationVM : ViewModelBase
         }
         else
         {
-            var box = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Вы ввели неверный логин или пароль", ButtonEnum.Ok);
-            box.ShowAsync();
+            MessageBoxManager.GetMessageBoxStandard("Ошибка", "Вы ввели неверный логин или пароль", ButtonEnum.Ok).ShowAsync();
         }
     }
 
@@ -63,13 +62,6 @@ public class AuthorizationVM : ViewModelBase
             av.Show();
             obj.Close();
         }
-    
-        // else if(user.Post == "Администратор")
-        // {
-        //     AdminWindow homePage = new AdminWindow();
-        //     homePage.Show();
-        //     obj.Close();
-        // }
     }
 }
 

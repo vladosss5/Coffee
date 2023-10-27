@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Coffee.Models;
 using DynamicData;
+using Microsoft.Office.Interop.Excel;
 using ReactiveUI;
 
 namespace Coffee.ViewModels;
@@ -65,17 +67,20 @@ public class CheckVM : ViewModelBase
         LastOrder = Helper.GetContext().Orders.OrderByDescending(o => o.IdOrder).FirstOrDefault();
         CheckPrice = LastOrder.FullPrice;
         var idDishes = LastOrder.OrderDishes.Select(orderDish => orderDish.IdDish).ToList();
+        
         foreach (var id in idDishes)
         {
             var edentity = Dishes.FirstOrDefault(x => x.IdDish == id);
+            edentity.CountDishes = OrderDishes.Where(x => x.IdDish == id).FirstOrDefault().CountDishes;
             if (edentity != null)
             {
                 _dishesInCheck.Add(new Dish()
                 {
                     IdDish =  edentity.IdDish,
                     Name = edentity.Name,
-                    Price = edentity.Price,
-                    Photo = edentity.Photo,
+                    Price = edentity.Price * edentity.CountDishes,
+                    Photo = edentity.Photo, 
+                    CountDishes = edentity.CountDishes
                 });
             }
         }

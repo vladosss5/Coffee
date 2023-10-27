@@ -5,6 +5,8 @@ using System.Reactive;
 using Avalonia.Controls;
 using Coffee.Context;
 using Coffee.Models;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using ReactiveUI;
 
 namespace Coffee.ViewModels;
@@ -121,6 +123,11 @@ public class EmployeesPageViewModel : PageViewModelBase
             _newUser.IdPost = truePost.IdPost;
             Helper.GetContext().Users.Add(_newUser);
             Helper.GetContext().SaveChanges();
+            MessageBoxManager.GetMessageBoxStandard("Успех", "Акция добавлена", ButtonEnum.Ok, Icon.Success).ShowAsync();
+        }
+        else
+        {
+            MessageBoxManager.GetMessageBoxStandard("Ощибка", "Неверно указаны двнные", ButtonEnum.Ok, Icon.Error).ShowAsync();
         }
     }
 

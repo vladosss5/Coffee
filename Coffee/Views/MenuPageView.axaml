@@ -66,7 +66,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn IsReadOnly="True" Header="№" Binding="{Binding IdCategory}"/>
                     <DataGridTextColumn IsReadOnly="True" Header="Название" Binding="{Binding Name}"/>
-                    <DataGridCheckBoxColumn />
+                    <DataGridCheckBoxColumn Header="☑" Binding="{Binding SelectCategory}"/>
                 </DataGrid.Columns>
                 </DataGrid>
             <Grid>
@@ -75,8 +75,7 @@
                 <Button Grid.Column="1" HorizontalAlignment="Right" MaxHeight="32" 
                         Background="Transparent" BorderBrush="Black"
                         Margin="5" CornerRadius="3"
-                        Command="{Binding SelectImge}"
-                        CommandParameter="{Binding ElementName=ThisWindow}">
+                        Command="{Binding SelectImge}">
                     <Image Source="/Assets/folder.png"></Image>
                 </Button>
                 <Grid.ColumnDefinitions>
@@ -86,7 +85,6 @@
             </Grid>
             <Button Content="Добавить"
                     Command="{Binding AddDish}"
-                    CommandParameter="{Binding ElementName=ThisWindow}"
                     HorizontalAlignment="Center" Margin="5"
                     Background="Orange"/>
         </StackPanel>

@@ -11,11 +11,11 @@ public partial class Order
 
     public DateTime DateAndTime { get; set; }
 
-    public int IdStstus { get; set; }
+    public int IdStatus { get; set; }
 
     public virtual ICollection<Cooking> Cookings { get; set; } = new List<Cooking>();
 
-    public virtual StatusesOrder IdStstusNavigation { get; set; } = null!;
+    public virtual StatusesOrder IdStatusNavigation { get; set; } = null!;
 
     public virtual ICollection<OrderDish> OrderDishes { get; set; } = new List<OrderDish>();
 }

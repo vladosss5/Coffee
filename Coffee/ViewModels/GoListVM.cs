@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reactive.Linq;
 using Coffee.Models;
 using ReactiveUI;
 
@@ -49,14 +48,14 @@ public class GoListVM : ViewModelBase
     {
         foreach (var order in Order)
         {
-            if (order.IdStstus == 3)
+            if (order.IdStatus == 3)
             {
                 _readyOrders.Add( new Order()
                 {
                     IdOrder = order.IdOrder,
                     FullPrice = order.FullPrice,
                     DateAndTime = order.DateAndTime,
-                    IdStstus = order.IdStstus
+                    IdStatus = order.IdStatus
                 });
             }
         }
@@ -66,14 +65,14 @@ public class GoListVM : ViewModelBase
     {
         foreach (var order in Order)
         {
-            if (order.IdStstus == 1 || order.IdStstus == 2)
+            if (order.IdStatus == 1 || order.IdStatus == 2)
             {
                 _pendingOrders.Add( new Order()
                 {
                     IdOrder = order.IdOrder,
                     FullPrice = order.FullPrice,
                     DateAndTime = order.DateAndTime,
-                    IdStstus = order.IdStstus
+                    IdStatus = order.IdStatus
                 });
             }
         }

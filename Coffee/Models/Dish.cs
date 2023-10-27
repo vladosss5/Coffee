@@ -14,7 +14,7 @@ public partial class Dish
 
     public string? Photo { get; set; }
    
-    [NotMapped] public int Count { get; set; } = 1;
+    [NotMapped] public int CountDishes { get; set; } = 1;
     public virtual ICollection<DishCategory> DishCategories { get; set; } = new List<DishCategory>();
 
     public virtual ICollection<OrderDish> OrderDishes { get; set; } = new List<OrderDish>();

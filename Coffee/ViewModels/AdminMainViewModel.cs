@@ -99,9 +99,9 @@ public class AdminMainViewModel : ViewModelBase
 
     private void CreateReportImpl(Window obj)
     {
-         using (ExcelHelper helper = new ExcelHelper())
+         using(ExcelHelper helper = new ExcelHelper())
         {
-            if (helper.Open(filePath: Path.Combine(Environment.CurrentDirectory, @"D:\Документы\Отчёт о заказах.xlsx")))
+            if (helper.Open(filePath: Path.Combine(Environment.CurrentDirectory, @"C:\Users\kipor\Documents\Отчёт о заказах.xlsx")))
             {
                 int i = 0;
                 var allOrders = Order.ToList().OrderBy(p => p.DateAndTime).ToList();
@@ -122,9 +122,8 @@ public class AdminMainViewModel : ViewModelBase
                     worksheet.Name = month[j];
 
                     worksheet.Cells[1][startRowIndex] = "Номер";
-                    worksheet.Cells[2][startRowIndex] = "Кассир";
-                    worksheet.Cells[3][startRowIndex] = "Дата";
-                    worksheet.Cells[4][startRowIndex] = "Цена";
+                    worksheet.Cells[2][startRowIndex] = "Дата";
+                    worksheet.Cells[3][startRowIndex] = "Цена";
 
                     startRowIndex++;
 
@@ -146,12 +145,12 @@ public class AdminMainViewModel : ViewModelBase
                     }
                     
                     Excel.Range sumRange = worksheet.Range[worksheet.Cells[1][startRowIndex],
-                        worksheet.Cells[3][startRowIndex]];
+                        worksheet.Cells[2][startRowIndex]];
                     sumRange.Merge();
                     sumRange.Value = "Итого:";
 
-                    worksheet.Cells[4][startRowIndex].Formula =
-                        $"=SUM(D{startRowIndex - counter}:" + $"D{startRowIndex - 1}";
+                    worksheet.Cells[3][startRowIndex].Formula =
+                        $"=SUM(C{startRowIndex - counter}:" + $"C{startRowIndex - 1}";
 
                     worksheet.Columns.AutoFit();
                     helper.Save();

@@ -91,8 +91,8 @@
                 </ListBox.ItemTemplate>
         </ListBox>
 
-        <ListBox Grid.Row = "1" Grid.Column="2" 
-                 Name="PromotionListBox" 
+        <ListBox Grid.Row = "1" Grid.Column="2"
+                 Name="PromotionListBox"
                  ItemsSource="{Binding Promotion}"
                  CornerRadius="10" Margin="5" Background="Transparent">
                 <ListBox.ItemTemplate>
@@ -104,7 +104,7 @@
                                                Height="200" Width="200"
                                                VerticalAlignment="Center" HorizontalAlignment="Center"
                                                Margin="5"/>
-                                        <TextBlock Grid.Row="1" 
+                                        <TextBlock Grid.Row="1"
                                                    Text="{Binding IdDishNavigation.Name}"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
@@ -114,8 +114,10 @@
                                                    HorizontalAlignment="Center"
                                                    Margin="5"
                                                    FontSize="16"/>
-                
+                                        <TextBlock Grid.Row="3" Text="{Binding TotalPrice}"></TextBlock>
+        
                                         <Grid.RowDefinitions>
+                                                <RowDefinition/>
                                                 <RowDefinition/>
                                                 <RowDefinition/>
                                                 <RowDefinition/>
@@ -124,7 +126,6 @@
                         </DataTemplate>
                 </ListBox.ItemTemplate>
         </ListBox>
-        
         
         <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>

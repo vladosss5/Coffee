@@ -17,9 +17,10 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new GoListView()
+            desktop.MainWindow = new AdminMainView()
             {
-                DataContext = new GoListVM(),
+                DataContext = new AdminMainViewModel(),
+                
             };
         }
 

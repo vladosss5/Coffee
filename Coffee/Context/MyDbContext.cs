@@ -37,6 +37,7 @@ public partial class MyDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Server=localhost;port=5432;user id=postgres;password=toor;database=Coffee;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -99,10 +100,10 @@ public partial class MyDbContext : DbContext
 
             entity.Property(e => e.DateAndTime).HasColumnType("timestamp without time zone");
 
-            entity.HasOne(d => d.IdStstusNavigation).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.IdStstus)
+            entity.HasOne(d => d.IdStatusNavigation).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.IdStatus)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Orders_IdStstus_fkey");
+                .HasConstraintName("Orders_IdStatus_fkey");
         });
 
         modelBuilder.Entity<OrderDish>(entity =>
