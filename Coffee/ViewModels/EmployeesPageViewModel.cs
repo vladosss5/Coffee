@@ -127,7 +127,7 @@ public class EmployeesPageViewModel : PageViewModelBase
         }
         else
         {
-            MessageBoxManager.GetMessageBoxStandard("Ощибка", "Неверно указаны двнные", ButtonEnum.Ok, Icon.Error).ShowAsync();
+            MessageBoxManager.GetMessageBoxStandard("Ошибка", "Неверно указаны двнные", ButtonEnum.Ok, Icon.Error).ShowAsync();
         }
     }
 

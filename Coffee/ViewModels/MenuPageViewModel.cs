@@ -1,68 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reactive;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
-using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using Coffee.Models;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using ReactiveUI;
 
 namespace Coffee.ViewModels;
 
 public class MenuPageViewModel : PageViewModelBase
 {
-    public string Path;
-    
-    // private string _PathImage;
-    // public string PathImage
-    // {
-    //     get => PathImage;
-    //     set => this.RaiseAndSetIfChanged(ref _PathImage, value);
-    // }
+    public string ImagePath;
+    public string DestImagePath;
+    public string ImageProgectPath;
+    public string AssetsUserPath = @"C:\Users\kipor\Desktop\Курсовая 2\Разработка\Coffee\Coffee\AssetsUser";
 
     private string _Name;
+    private float _Price;
+    
+    private string _selectedImagePath;
+    private bool _OpenMenuDishesPage;
+
+    private Dish _newDish = new Dish();
+    
+    private ObservableCollection<Dish> _dish;
+    private ObservableCollection<Category> _category;
+    
     public string Name
     {
         get => _Name;
         set => this.RaiseAndSetIfChanged(ref _Name, value);
     }
-
-    private float _Price;
+    
     public float Price
     {
         get => _Price;
         set => this.RaiseAndSetIfChanged(ref _Price, value);
     }
     
-    private ObservableCollection<Dish> _dish;
+    
     public ObservableCollection<Dish> Dish
     {
         get => _dish;
         set => this.RaiseAndSetIfChanged(ref _dish, value);
     }
-
-    private ObservableCollection<Category> _category;
+    
     public ObservableCollection<Category> Category
     {
         get => _category;
         set => this.RaiseAndSetIfChanged(ref _category, value);
     }
     
-    private string _selectedImagePath;
     public string SelectedImagePath
     {
         get => _selectedImagePath;
         set => this.RaiseAndSetIfChanged(ref _selectedImagePath, value);
     }
-
-    private bool _OpenMenuDishesPage;
+    
     public override bool OpenMenuDishesPage
     {
         get => _OpenMenuDishesPage;
@@ -88,7 +87,7 @@ public class MenuPageViewModel : PageViewModelBase
     }
     
     public ReactiveCommand<Unit, Unit> AddDish { get; }
-    public ReactiveCommand<Unit, Unit> SelectImge { get; }
+    public ReactiveCommand<Window, Unit> SelectImge { get; }
 
     public MenuPageViewModel()
     {
@@ -98,18 +97,45 @@ public class MenuPageViewModel : PageViewModelBase
         OpenMenuDishesPage = false;
         
         AddDish = ReactiveCommand.Create(AddDishImpl);
-        SelectImge = ReactiveCommand.Create(SelectImgeImpl);
+        SelectImge = ReactiveCommand.Create<Window>(SelectImgeImpl);
     }
 
-    private void SelectImgeImpl()
+    private async void SelectImgeImpl(Window obj)
     {
-        // Path = @"D:\Изображения\photos\IMG_20210103_130822.jpeg";
-        // Process.Start(new ProcessStartInfo{FileName = "explorer"});
-        // File.Move(Path, @"C:\Users\V-pc\Documents\yчёба\Курсовая 2\Разработка\Coffee\Coffee\AssetsUser\IMG_20210103_130822.jpeg", true);
+        var topLevel = TopLevel.GetTopLevel(obj);
+        
+        var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+        {
+            Title = "Выберите изображение",
+            AllowMultiple = false,
+        });
+
+        ImagePath = Convert.ToString(files[0].Path.LocalPath);
+        DestImagePath = $"{AssetsUserPath}/{files[0].Name}";
+        SelectedImagePath = ImagePath;
+        ImageProgectPath = $"AssetsUser/{files[0].Name}";
+
     }
     
     private void AddDishImpl()
     {
-        
+        var context = Helper.GetContext();
+        var dish = Helper.GetContext().Dishes.FirstOrDefault(x=> x.Name == Name);
+        // var dishes = context.Dishes.Where(x => _dishesInCart.Select(x => x.IdDish).Contains(x.IdDish)).ToList();
+        if (dish == null)
+        {
+            _newDish.Name = Name;
+            _newDish.Price = Price;
+            _newDish.Photo = ImageProgectPath;
+            // _newDish.DishCategories = dish.
+            Helper.GetContext().Dishes.Add(_newDish);
+            Helper.GetContext().SaveChanges();
+            File.Copy(ImagePath, DestImagePath, true);
+            MessageBoxManager.GetMessageBoxStandard("Успех", "Блюдо добавлено", ButtonEnum.Ok, Icon.Success).ShowAsync();
+        }
+        else
+        {
+            MessageBoxManager.GetMessageBoxStandard("Ошибка", "Неверно указаны двнные", ButtonEnum.Ok, Icon.Error).ShowAsync();
+        }
     }
 }
