@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Coffee.Models;
+using Coffee.Views;
 using DynamicData;
 using Microsoft.Office.Interop.Excel;
 using ReactiveUI;
@@ -61,6 +62,7 @@ public class CheckVM : ViewModelBase
         LastOrder = Orders.OrderByDescending(x => x.IdOrder).FirstOrDefault();
         FillingDishesInCheck();
     }
+    
 
     private void FillingDishesInCheck()
     {
@@ -71,7 +73,9 @@ public class CheckVM : ViewModelBase
         foreach (var id in idDishes)
         {
             var edentity = Dishes.FirstOrDefault(x => x.IdDish == id);
-            edentity.CountDishes = OrderDishes.Where(x => x.IdDish == id).FirstOrDefault().CountDishes;
+            edentity.CountDishes = OrderDishes.
+                Where(x => x.IdDish == id && x.IdOrder == _lastOrder.IdOrder).
+                FirstOrDefault().CountDishes;
             if (edentity != null)
             {
                 _dishesInCheck.Add(new Dish()

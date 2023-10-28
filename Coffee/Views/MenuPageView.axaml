@@ -18,49 +18,86 @@
     </UserControl.Resources>
     
     <Grid Margin="5">
-        <ListBox Name="DishListBox"
-                 ItemsSource="{Binding Dish}"
-                 CornerRadius="15" Margin="5" Padding="5"
-                 Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
-                 Background="Transparent"
-                 VerticalAlignment="Stretch"
-                 HorizontalAlignment="Stretch">
-                <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                                <WrapPanel MaxHeight="250" Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
+    <!--     <ListBox Name="DishListBox" -->
+    <!--              ItemsSource="{Binding Dish}" -->
+    <!--              CornerRadius="15" Margin="5" Padding="5" -->
+    <!--              Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" -->
+    <!-- Background="Transparent" -->
+    <!-- VerticalAlignment="Stretch" -->
+    <!-- HorizontalAlignment="Stretch"> -->
+    <!--             <ListBox.ItemsPanel> -->
+    <!--                     <ItemsPanelTemplate> -->
+    <!--                             <WrapPanel MaxHeight="250" Orientation="Horizontal"/> -->
+    <!--                     </ItemsPanelTemplate> -->
+    <!--             </ListBox.ItemsPanel> -->
+    <!--             <ListBox.ItemTemplate> -->
+    <!--                     <DataTemplate> -->
+    <!--                             <Grid> -->
+    <!--                                     <Image Grid.Row="0" -->
+        <!--                                        Source="{Binding Photo, -->
+        <!--                                        Converter={StaticResource BitmapAssetValueConverter}}" -->
+        <!--                                        Height="130" Width="180" -->
+        <!--                                        VerticalAlignment="Center" HorizontalAlignment="Center" -->
+        <!--                                        Margin="5"/> -->
+        <!--                                  -->
+        <!--                                 <TextBlock Grid.Row="1" Text="{Binding Name}" -->
+        <!--                                            HorizontalAlignment="Center" -->
+        <!--                                            VerticalAlignment="Center" -->
+        <!--                                            FontSize="18" -->
+        <!--                                            Margin="5"/> -->
+        <!--                                  -->
+        <!--                                 <TextBlock Grid.Row="2" Text="{Binding Price}" -->
+        <!--                                            HorizontalAlignment="Center" -->
+        <!--                                            VerticalAlignment="Center" -->
+        <!--                                            FontSize="16" -->
+        <!--                                            Margin="5"/> -->
+        <!--                                  -->
+        <!--                                 <Grid.RowDefinitions> -->
+        <!--                                         <RowDefinition Height="Auto"/> -->
+        <!--                                         <RowDefinition Height="Auto"/> -->
+        <!--                                         <RowDefinition Height="Auto"></RowDefinition> -->
+        <!--                                 </Grid.RowDefinitions> -->
+        <!--                         </Grid> -->
+        <!--                 </DataTemplate> -->
+        <!--         </ListBox.ItemTemplate> -->
+        <!-- </ListBox> -->
+        
+        <DataGrid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"
+                  CornerRadius="15" Margin="5" Padding="5"
+                  ItemsSource="{Binding DishCategories}"
+                  Background="Transparent"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding IdDishNavigation.IdDish}"/>
+                <DataGridTextColumn Binding="{Binding IdDishNavigation.Name}"/>
+                <DataGridTextColumn Binding="{Binding IdDishNavigation.Price}"/>
+                <DataGridTextColumn Binding="{Binding IdCategoryNavigation.Name}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                                <Grid>
-                                        <Image Grid.Row="0" 
-                                               Source="{Binding Photo,
-                                               Converter={StaticResource BitmapAssetValueConverter}}"
-                                               Height="130" Width="180"
-                                               VerticalAlignment="Center" HorizontalAlignment="Center"
-                                               Margin="5"/>
-                                        
-                                        <TextBlock Grid.Row="1" Text="{Binding Name}"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="18"
-                                                   Margin="5"/>
-                                        
-                                        <TextBlock Grid.Row="2" Text="{Binding Price}"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="16"
-                                                   Margin="5"/>
-                                        
-                                        <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                </Grid>
+                                <Image Source="{Binding IdDishNavigation.Photo,
+                                        Converter={StaticResource BitmapAssetValueConverter}}"
+                                       MaxHeight="20" VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" Margin="5"/>
                         </DataTemplate>
-                </ListBox.ItemTemplate>
-        </ListBox>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    Height="25" Width="25" Background="Transparent"
+                                    Command="{Binding ElementName=ThisPage, Path=RemoveDish}" 
+                                    CommandParameter="{Binding }"
+                                    CornerRadius="50">
+                                <Image Source="/Assets/delete.png"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         
         
         <Border Grid.Row="0" Grid.Column="1" Background="Transparent" Margin="10">

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reactive;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
+using Coffee.Context;
 using Coffee.Models;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
@@ -15,10 +16,12 @@ namespace Coffee.ViewModels;
 
 public class MenuPageViewModel : PageViewModelBase
 {
+    private MyDbContext db = new MyDbContext();
+    
     public string ImagePath;
     public string DestImagePath;
     public string ImageProgectPath;
-    public string AssetsUserPath = @"C:\Users\kipor\Desktop\Курсовая 2\Разработка\Coffee\Coffee\AssetsUser";
+    public string AssetsUserPath = @"C:\Users\V-pc\Documents\Coffee\Coffee\AssetsUser";
 
     private string _Name;
     private float _Price;
@@ -30,6 +33,7 @@ public class MenuPageViewModel : PageViewModelBase
     
     private ObservableCollection<Dish> _dish;
     private ObservableCollection<Category> _category;
+    private ObservableCollection<DishCategory> _dishCategories;
     
     public string Name
     {
@@ -54,6 +58,12 @@ public class MenuPageViewModel : PageViewModelBase
     {
         get => _category;
         set => this.RaiseAndSetIfChanged(ref _category, value);
+    }
+
+    public ObservableCollection<DishCategory> DishCategories
+    {
+        get => _dishCategories;
+        set => this.RaiseAndSetIfChanged(ref _dishCategories, value);
     }
     
     public string SelectedImagePath
@@ -93,6 +103,7 @@ public class MenuPageViewModel : PageViewModelBase
     {
         Dish = new ObservableCollection<Dish>(Helper.GetContext().Dishes.ToList());
         Category = new ObservableCollection<Category>(Helper.GetContext().Categories.ToList());
+        DishCategories = new ObservableCollection<DishCategory>(Helper.GetContext().DishCategories.ToList());
         
         OpenMenuDishesPage = false;
         
@@ -120,22 +131,40 @@ public class MenuPageViewModel : PageViewModelBase
     private void AddDishImpl()
     {
         var context = Helper.GetContext();
+        // var categories = context.Categories.
+        //     Where(x => _category.Select(c => c.SelectCategory == true))
         var dish = Helper.GetContext().Dishes.FirstOrDefault(x=> x.Name == Name);
-        // var dishes = context.Dishes.Where(x => _dishesInCart.Select(x => x.IdDish).Contains(x.IdDish)).ToList();
+        
         if (dish == null)
         {
             _newDish.Name = Name;
             _newDish.Price = Price;
             _newDish.Photo = ImageProgectPath;
+            // _newDish.DishCategories = _category.Select(c => new DishCategory(){ IdCategory = c.IdCategory, IdDishNavigation = c}).FirstOrDefault();
             // _newDish.DishCategories = dish.
             Helper.GetContext().Dishes.Add(_newDish);
             Helper.GetContext().SaveChanges();
-            File.Copy(ImagePath, DestImagePath, true);
-            MessageBoxManager.GetMessageBoxStandard("Успех", "Блюдо добавлено", ButtonEnum.Ok, Icon.Success).ShowAsync();
+            try
+            {
+                File.Copy(ImagePath, DestImagePath, true);
+                MessageBoxManager.GetMessageBoxStandard("Успех", "Блюдо добавлено", ButtonEnum.Ok, Icon.Success).ShowAsync();
+            }
+            catch (Exception e)
+            {
+                MessageBoxManager.GetMessageBoxStandard("Ошибка", $"{e}", ButtonEnum.Ok, Icon.Error).ShowAsync();
+            }
         }
         else
         {
             MessageBoxManager.GetMessageBoxStandard("Ошибка", "Неверно указаны двнные", ButtonEnum.Ok, Icon.Error).ShowAsync();
         }
+    }
+
+    public void RemoveDishImpl(Dish d)
+    {
+        _dish.Remove(d);
+        Dish dish = db.Dishes.Where(p => p.IdDish == d.IdDish).FirstOrDefault();
+        db.Dishes.Remove(dish);
+        db.SaveChanges();
     }
 }

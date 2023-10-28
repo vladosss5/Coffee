@@ -119,7 +119,7 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                         <DataTemplate>
-                                <Grid Opacity="1.4" Margin="10">
+                                <Grid Opacity="1.3" Margin="10">
                                         <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
                                                Source="{Binding Photo,
                                                 Converter={StaticResource BitmapAssetValueConverter}}"

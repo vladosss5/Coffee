@@ -101,7 +101,7 @@ public class AdminMainViewModel : ViewModelBase
     {
          using(ExcelHelper helper = new ExcelHelper())
         {
-            if (helper.Open(filePath: Path.Combine(Environment.CurrentDirectory, @"C:\Users\kipor\Documents\Отчёт о заказах.xlsx")))
+            if (helper.Open(filePath: Path.Combine(Environment.CurrentDirectory, @"C:\Users\V-pc\Documents\Отчёт о заказах.xlsx")))
             {
                 int i = 0;
                 var allOrders = Order.ToList().OrderBy(p => p.DateAndTime).ToList();

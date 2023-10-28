@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
+using System.Threading.Tasks;
 using Avalonia.Controls;
 using Coffee.Models;
 using Coffee.Views;
@@ -126,7 +127,9 @@ public class SellerVM : ViewModelBase
     private void CreateOrderImpl(Window obj)
     {
         var context = Helper.GetContext();
-        var dishes = context.Dishes.Where(x => _dishesInCart.Select(x => x.IdDish).Contains(x.IdDish)).ToList();
+        var dishes = context.Dishes.
+            Where(x => _dishesInCart.Select(x => x.IdDish).
+                Contains(x.IdDish)).ToList();
 
         Order order = new Order();
         order.DateAndTime = DateTime.Now;
@@ -137,10 +140,16 @@ public class SellerVM : ViewModelBase
         Helper.GetContext().Orders.UpdateRange();
         Helper.GetContext().SaveChanges();
 
-        foreach (var d in DishesInSelectCat) //Приводит количество блюд к изначальному значению
+        foreach (var d in DishesInSelectCat)
         {
             d.CountDishes = 1;
         }
+        
+        ShowCheck(obj);
+    }
+
+    private void ShowCheck(Window obj)
+    {
         CheckView cvw = new CheckView();
         cvw.Show();
         obj.Close();
