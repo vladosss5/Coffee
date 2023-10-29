@@ -17,9 +17,9 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new SellerView()
+            desktop.MainWindow = new AuthorizationView()
             {
-                DataContext = new SellerVM(),
+                DataContext = new AuthorizationVM(),
                 
             };
         }

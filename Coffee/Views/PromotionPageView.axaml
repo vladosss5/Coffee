@@ -39,7 +39,7 @@
                                         Height="20" Width="20"
                                         Background="DarkOrange"
                                         Command="{Binding ElementName=ThisPage, Path=RemovePromotion}"
-                                        CommandParameter="{Binding }"></Button>
+                                        CommandParameter="{Binding }"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

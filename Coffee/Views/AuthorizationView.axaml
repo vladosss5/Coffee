@@ -11,6 +11,10 @@
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True">
+        
+        <Design.DataContext>
+                <viewModels:AuthorizationVM/>
+        </Design.DataContext>
     
         <Window.Styles>
                 <StyleInclude Source="/Styles/AppStyle.axaml" />
@@ -22,23 +26,42 @@
                         Background="Azure" 
                         VerticalAlignment="Center"  
                         CornerRadius="25">
-                        <StackPanel>
-                                <TextBlock FontWeight="Bold" FontSize="24" Text="Авторизация"/>
+                        <Grid>
+                                <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0">
+                                        <TextBlock FontWeight="Bold" FontSize="24" Text="Авторизация"/>
                                 
-                                <TextBox Watermark="Логин"
-                                         Text="{Binding Login}"
-                                         Margin="0,10,0,5"/>
+                                        <TextBox Watermark="Логин"
+                                                 Text="{Binding Login}"
+                                                 Margin="0,10,0,5"/>
                                 
-                                <TextBox Watermark="Пароль"
-                                         Text="{Binding Password}"
-                                         PasswordChar="*"
-                                         Margin="0, 5, 0 ,10"/>
+                                        <TextBox Watermark="Пароль"
+                                                 Text="{Binding Password}"
+                                                 PasswordChar="*"
+                                                 Margin="0, 5, 0 ,10"/>
+                                </StackPanel>
                                 
-                                <Button Content="Вход"
-                                        Command="{Binding ButtonEnter}"
-                                        CommandParameter="{Binding ElementName=ThisWindow}"
-                                        Background="DarkOrange"/>
-                        </StackPanel>
+                                <Button  Grid.Column="0" Grid.Row="1" Content="Вход"
+                                         Command="{Binding ButtonEnter}"
+                                         CommandParameter="{Binding ElementName=ThisWindow}"
+                                         Background="DarkOrange"
+                                         HorizontalAlignment="Left"/>   
+                                
+                                <Button  Grid.Column="1" Grid.Row="1" Content="Назад"
+                                         Command="{Binding ButtonEnter}"
+                                         CommandParameter="{Binding ElementName=ThisWindow}"
+                                         Background="Gray"
+                                         HorizontalAlignment="Right"/>   
+                                
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                        </Grid>
                 </Border>
         </Panel>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reactive;
+using System.Runtime.InteropServices.ComTypes;
 using Avalonia.Controls;
 using Coffee.Models;
 using Coffee.Views;
@@ -33,11 +34,21 @@ public class AuthorizationVM : ViewModelBase
     }
 
     public ReactiveCommand<Window, Unit> ButtonEnter { get; }
+    public ReactiveCommand<Window, Unit> ButtonBack { get; }
 
     public AuthorizationVM()
     {
         ButtonEnter = ReactiveCommand.Create<Window>(OpenWindowImpl);
+        ButtonBack = ReactiveCommand.Create<Window>(BackWindowImpl);
     }
+
+    private void BackWindowImpl(Window obj)
+    {
+        MainWindow mv = new MainWindow();
+        mv.Show();
+        obj.Close();
+    }
+
     private void OpenWindowImpl(Window obj)
     {
         User user = null;

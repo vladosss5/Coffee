@@ -4,14 +4,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Coffee.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="Coffee.Views.CheckView"
         x:DataType="viewModels:CheckVM"
-        x:CompileBindings="True"
         x:Name="ThisWindow"
+        x:Class="Coffee.Views.CheckView"
         Title="CheckView"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True">
+    
+        <Design.DataContext>
+                <viewModels:CheckVM/>
+        </Design.DataContext>
         
         <Window.Styles>
                 <StyleInclude Source="/Styles/AppStyle.axaml" />
@@ -24,11 +27,17 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Margin="20">
-                        <Image Source="/Assets/Logo.png" 
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Height="150" Width="150"
-                               Margin="20" Opacity="1.4"/>
+                        <Button Height="180" Width="180"
+                                Margin="0" Background="Transparent"
+                                CornerRadius="100"
+                                Command="{Binding OpenSellerWindow}"
+                                CommandParameter="{Binding ElementName=ThisWindow}">
+                                <Image Source="/Assets/Logo.png"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Height="150" Width="150"
+                                       Opacity="1.4"/>
+                        </Button>
                 </Border>
 
                 <Border Grid.Row="1"
@@ -85,7 +94,7 @@
 
                 
                 <Grid.RowDefinitions>
-                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>

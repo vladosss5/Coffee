@@ -140,16 +140,11 @@ public class SellerVM : ViewModelBase
         Helper.GetContext().Orders.UpdateRange();
         Helper.GetContext().SaveChanges();
 
-        foreach (var d in DishesInSelectCat)
-        {
-            d.CountDishes = 1;
-        }
+        // foreach (var d in DishesInSelectCat)
+        // {
+        //     d.CountDishes = 1;
+        // }
         
-        ShowCheck(obj);
-    }
-
-    private void ShowCheck(Window obj)
-    {
         CheckView cvw = new CheckView();
         cvw.Show();
         obj.Close();

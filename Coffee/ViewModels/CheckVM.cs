@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive;
 using System.Threading.Tasks;
 using Coffee.Models;
 using Coffee.Views;
@@ -53,16 +54,25 @@ public class CheckVM : ViewModelBase
         get => _checkPrice;
         set => this.RaiseAndSetIfChanged(ref _checkPrice, value);
     }
-    
+
+    public ReactiveCommand<Window, Unit> OpenSellerWindow { get; }
+
     public CheckVM()
     {
         Dishes = new ObservableCollection<Dish>(Helper.GetContext().Dishes.ToList());
         OrderDishes = new ObservableCollection<OrderDish>(Helper.GetContext().OrderDishes.ToList());
         Orders = new ObservableCollection<Order>(Helper.GetContext().Orders.ToList());
-        LastOrder = Orders.OrderByDescending(x => x.IdOrder).FirstOrDefault();
+        OpenSellerWindow = ReactiveCommand.Create<Window>(OpenSellerWindowImpl);
         FillingDishesInCheck();
     }
-    
+
+    private void OpenSellerWindowImpl(Window obj)
+    {
+        SellerView sv = new SellerView();
+        sv.Show();
+        obj.Close();
+    }
+
 
     private void FillingDishesInCheck()
     {
