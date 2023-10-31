@@ -55,7 +55,7 @@ public class CookViewModel : ViewModelBase
         Dishes = new ObservableCollection<Dish>(Helper.GetContext().Dishes.ToList());
         OrderDishes = new ObservableCollection<OrderDish>(Helper.GetContext().OrderDishes.ToList());
         GetOrder.AddRange(AllOrders.Where(o => o.IdStatus == 1));
-        SetOrder.AddRange(AllOrders.Where(o => o.IdStatus == 2 || o.IdStatus == 3));
+        SetOrder.AddRange(AllOrders.Where(o => (o.IdStatus == 2 || o.IdStatus == 3) && o.DateAndTime.Day == DateTime.Now.Day));
     }
 
     public void GetOrderImpl(Order order)
@@ -63,7 +63,7 @@ public class CookViewModel : ViewModelBase
         order.IdStatus = 2;
         GetOrder.Remove(order);
         SetOrder.Add(order);
-        // db.Orders.Update(order);
+        db.Orders.Update(order);
         db.SaveChanges();
     }
 

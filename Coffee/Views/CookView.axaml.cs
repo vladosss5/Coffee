@@ -14,7 +14,7 @@ public partial class CookView : Window
         DataContext = new CookViewModel();
     }
 
-    public void GetOrder(Order order)
+    public void GettingOrder(Order order)
     {
         (DataContext as CookViewModel).GetOrderImpl(order);
     }

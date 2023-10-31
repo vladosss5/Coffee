@@ -11,7 +11,8 @@
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True"
         Icon="/Assets/icon_coffee.png"
-        Title="Повар">
+        Title="Повар"
+        x:CompileBindings="True">
     
         <Window.Styles>
                 <StyleInclude Source="/Styles/AppStyle.axaml" />
@@ -54,7 +55,7 @@
                                                         <DataTemplate>
                                                                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                                                                         Height="25" Width="25" Background="DarkOrange"
-                                                                        Command="{Binding ElementName=ThisWindow, Path=GetOrder}" 
+                                                                        Command="{Binding ElementName=ThisWindow, Path=GettingOrder}" 
                                                                         CommandParameter="{Binding }"
                                                                         CornerRadius="20">
                                                                         <!-- <Image Source="/Assets/delete.png"/> -->
@@ -65,10 +66,11 @@
                                 </DataGrid.Columns>
                                 <DataGrid.RowDetailsTemplate>
                                         <DataTemplate>
-                                                <DataGrid ItemsSource="{Binding OrderDishes}">
+                                                <DataGrid Name = "PaidDishGrid"
+                                                          ItemsSource="{ReflectionBinding OrderDishes}">
                                                         <DataGrid.Columns>
-                                                                <DataGridTextColumn Header="Название" Binding="{Binding IdDishNavigation.Name}"/>
-                                                                <DataGridTextColumn Header="Кол-во" Binding="{Binding CountDishes}"/>
+                                                                <DataGridTextColumn Header="Название" Binding="{ReflectionBinding IdDishNavigation.Name}"/>
+                                                                <DataGridTextColumn Header="Кол-во" Binding="{ReflectionBinding CountDishes}"/>
                                                         </DataGrid.Columns>
                                                 </DataGrid>
                                         </DataTemplate>
@@ -79,7 +81,8 @@
                 <Border Grid.Column="1" Grid.Row="1"
                         CornerRadius="25" Background="Azure"
                         Padding="10" Margin="5">
-                        <DataGrid ItemsSource="{ReflectionBinding SetOrder}"
+                        <DataGrid Name="SetOrderGrid"
+                                  ItemsSource="{Binding SetOrder}"
                                   Background="Transparent">
                                 <DataGrid.Columns>
                                         <DataGridTextColumn Header="№" Binding="{Binding IdOrder}" IsReadOnly="True"/>
@@ -100,10 +103,11 @@
                                 </DataGrid.Columns>
                                 <DataGrid.RowDetailsTemplate>
                                         <DataTemplate>
-                                                <DataGrid ItemsSource="{Binding OrderDishes}">
+                                                <DataGrid Name="SetDishesGrid" 
+                                                          ItemsSource="{ReflectionBinding OrderDishes}">
                                                         <DataGrid.Columns>
-                                                                <DataGridTextColumn Header="Название" Binding="{Binding IdDishNavigation.Name}"/>
-                                                                <DataGridTextColumn Header="Кол-во" Binding="{Binding CountDishes}"/>
+                                                                <DataGridTextColumn Header="Название" Binding="{ReflectionBinding IdDishNavigation.Name}"/>
+                                                                <DataGridTextColumn Header="Кол-во" Binding="{ReflectionBinding CountDishes}"/>
                                                         </DataGrid.Columns>
                                                 </DataGrid>
                                         </DataTemplate>
