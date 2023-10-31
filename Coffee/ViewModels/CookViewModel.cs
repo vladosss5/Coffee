@@ -58,10 +58,17 @@ public class CookViewModel : ViewModelBase
         SetOrder.AddRange(AllOrders.Where(o => o.IdStatus == 2 || o.IdStatus == 3));
     }
 
-    public void GetOrderImpl(Order o)
+    public void GetOrderImpl(Order order)
     {
-        o.IdStatus = 2;
-        db.Orders.Update(o);
+        order.IdStatus = 2;
+        GetOrder.Remove(order);
+        SetOrder.Add(order);
+        // db.Orders.Update(order);
         db.SaveChanges();
+    }
+
+    public void SetOrderImpl(Order order)
+    {
+        
     }
 }

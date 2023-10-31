@@ -3,16 +3,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Coffee.ViewModels"
-        xmlns:coffee="clr-namespace:Coffee"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Coffee.Views.CookView"
-        x:DataType="viewModels:SellerViewModel"
+        x:DataType="viewModels:CookViewModel"
         x:Name="ThisWindow"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True"
         Icon="/Assets/icon_coffee.png"
-        Title="CookView">
+        Title="Повар">
     
         <Window.Styles>
                 <StyleInclude Source="/Styles/AppStyle.axaml" />
@@ -44,7 +43,8 @@
                 <Border Grid.Column="0" Grid.Row="1" 
                         CornerRadius="25" Background="Azure"
                         Padding="10" Margin="5">
-                        <DataGrid ItemsSource="{Binding GetOrder}"
+                        <DataGrid Name="PaidGrid"
+                                  ItemsSource="{Binding GetOrder}"
                                   Background="Transparent">
                                 <DataGrid.Columns>
                                         <DataGridTextColumn Header="№" Binding="{Binding IdOrder}" IsReadOnly="True"/>
@@ -53,10 +53,10 @@
                                                 <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                                        Height="25" Width="25" Background="Transparent"
-                                                                        Command="{Binding ElementName=ThisWindow, Path=RemoveEmployee}" 
+                                                                        Height="25" Width="25" Background="DarkOrange"
+                                                                        Command="{Binding ElementName=ThisWindow, Path=GetOrder}" 
                                                                         CommandParameter="{Binding }"
-                                                                        CornerRadius="50">
+                                                                        CornerRadius="20">
                                                                         <!-- <Image Source="/Assets/delete.png"/> -->
                                                                 </Button>
                                                         </DataTemplate>
@@ -79,11 +79,24 @@
                 <Border Grid.Column="1" Grid.Row="1"
                         CornerRadius="25" Background="Azure"
                         Padding="10" Margin="5">
-                        <DataGrid ItemsSource="{Binding SetOrder}"
+                        <DataGrid ItemsSource="{ReflectionBinding SetOrder}"
                                   Background="Transparent">
                                 <DataGrid.Columns>
                                         <DataGridTextColumn Header="№" Binding="{Binding IdOrder}" IsReadOnly="True"/>
                                         <DataGridTextColumn Header="Статус" Binding="{Binding IdStatusNavigation.Name}" IsReadOnly="True"/>
+                                        <DataGridTemplateColumn Header="Готово">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                                <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                                        Height="25" Width="25" Background="DarkOrange"
+                                                                        Command="{Binding ElementName=ThisWindow, Path=SetOrder}" 
+                                                                        CommandParameter="{Binding }"
+                                                                        CornerRadius="50">
+                                                                        <!-- <Image Source="/Assets/delete.png"/> -->
+                                                                </Button>
+                                                        </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                                 <DataGrid.RowDetailsTemplate>
                                         <DataTemplate>
