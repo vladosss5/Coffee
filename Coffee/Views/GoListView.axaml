@@ -8,12 +8,13 @@
         x:Class="Coffee.Views.GoListView"
         x:Name="ThisWindow"
         Title="GoListView"
+        Icon="/Assets/icon_coffee.png"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True">
         
         <Design.DataContext>
-                <vm:GoListVM/>
+                <vm:GoListViewModel/>
         </Design.DataContext>
 
         <Window.Styles>
@@ -24,117 +25,117 @@
                 <coffee:BitmapAssetValueConverter x:Key="BitmapAssetValueConverter"/>
         </Window.Resources>
     
-<Grid Margin="10">
-        <!-- Заголовки -->
-        <Border Grid.Column="0" Grid.Row="0"
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
-        <Border Grid.Column="1" Grid.Row="0"
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
-        <Border Grid.Column="2" Grid.Row="0"
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
-        
-        <TextBlock Grid.Column="0" Grid.Row="0" Text="Готовится"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="36" FontWeight="Bold"
-                   FontFamily="Sweet Mavka Script"
-                   Padding="3"/>
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="Выдача"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="36" FontWeight="Bold"
-                   FontFamily="Sweet Mavka Script"
-                   Padding="3"/>
-        <TextBlock Grid.Column="2" Grid.Row="0" Text="Акции"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
-                   FontSize="36" FontWeight="Bold"
-                   FontFamily="Sweet Mavka Script"
-                   Padding="3"/>
-        
-        <!-- Списки -->
-        <Border Grid.Column="0" Grid.Row="1"
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
-        <Border Grid.Column="1" Grid.Row="1"
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
-        <Border Grid.Column="2" Grid.Row="1"
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
-        
-        <ListBox Grid.Row="1" Grid.Column="0"
-                 Name="PendingOrdersListBox"
-                 ItemsSource="{Binding PendingOrder}"
-                 Margin="5" CornerRadius="10" Background="Transparent">
-                <ListBox.ItemTemplate>
-                        <DataTemplate>
-                                <TextBlock Text="{Binding IdOrder}"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           FontSize="28"/>
-                        </DataTemplate>
-                </ListBox.ItemTemplate>
-        </ListBox>
-        
-        <ListBox Grid.Row="1" Grid.Column="1"
-                 Name="ReadyOrderListBox"
-                 ItemsSource="{Binding ReadyOrder}"
-                 Margin="5" CornerRadius="10" Background="Transparent">
-                <ListBox.ItemTemplate>
-                        <DataTemplate>
-                                <TextBlock Text="{Binding IdOrder}"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           FontSize="28"/>
-                        </DataTemplate>
-                </ListBox.ItemTemplate>
-        </ListBox>
-
-        <ListBox Grid.Row = "1" Grid.Column="2"
-                 Name="PromotionListBox"
-                 ItemsSource="{Binding Promotion}"
-                 CornerRadius="10" Margin="5" Background="Transparent">
-                <ListBox.ItemTemplate>
-                        <DataTemplate>
-                                <Grid Margin="10">
-                                        <Image Grid.Row="0"
-                                               Source="{Binding IdDishNavigation.Photo,
-                                                Converter={StaticResource BitmapAssetValueConverter}}"
-                                               Height="200" Width="200"
-                                               VerticalAlignment="Center" HorizontalAlignment="Center"
-                                               Margin="5"/>
-                                        <TextBlock Grid.Row="1"
-                                                   Text="{Binding IdDishNavigation.Name}"
+        <Grid Margin="10">
+                <!-- Заголовки -->
+                <Border Grid.Column="0" Grid.Row="0"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
+                <Border Grid.Column="1" Grid.Row="0"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
+                <Border Grid.Column="2" Grid.Row="0"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
+                
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Готовится"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                           FontSize="36" FontWeight="Bold"
+                           FontFamily="Sweet Mavka Script"
+                           Padding="3"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="Выдача"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                           FontSize="36" FontWeight="Bold"
+                           FontFamily="Sweet Mavka Script"
+                           Padding="3"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" Text="Акции"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                           FontSize="36" FontWeight="Bold"
+                           FontFamily="Sweet Mavka Script"
+                           Padding="3"/>
+                
+                <!-- Списки -->
+                <Border Grid.Column="0" Grid.Row="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
+                <Border Grid.Column="1" Grid.Row="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
+                <Border Grid.Column="2" Grid.Row="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        CornerRadius="10" Margin="5" Opacity="0.7" Background="Azure"/>
+                
+                <ListBox Grid.Row="1" Grid.Column="0"
+                         Name="PendingOrdersListBox"
+                         ItemsSource="{Binding PendingOrder}"
+                         Margin="5" CornerRadius="10" Background="Transparent">
+                        <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                        <TextBlock Text="{Binding IdOrder}"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
-                                                   FontSize="20"/>
-                                        <TextBlock Grid.Row="2"
-                                                   Text="{Binding IdDishNavigation.Price}"
+                                                   FontSize="28"/>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>
+                </ListBox>
+                
+                <ListBox Grid.Row="1" Grid.Column="1"
+                         Name="ReadyOrderListBox"
+                         ItemsSource="{Binding ReadyOrder}"
+                         Margin="5" CornerRadius="10" Background="Transparent">
+                        <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                        <TextBlock Text="{Binding IdOrder}"
                                                    HorizontalAlignment="Center"
-                                                   Margin="5"
-                                                   FontSize="16"/>
-                                        <TextBlock Grid.Row="3" Text="{Binding TotalPrice}"></TextBlock>
-        
-                                        <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                </Grid>
-                        </DataTemplate>
-                </ListBox.ItemTemplate>
-        </ListBox>
-        
-        <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-</Grid>
+                                                   VerticalAlignment="Center"
+                                                   FontSize="28"/>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>
+                </ListBox>
+
+                <ListBox Grid.Row = "1" Grid.Column="2"
+                         Name="PromotionListBox"
+                         ItemsSource="{Binding Promotion}"
+                         CornerRadius="10" Margin="5" Background="Transparent">
+                        <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                        <Grid Margin="10">
+                                                <Image Grid.Row="0"
+                                                       Source="{Binding IdDishNavigation.Photo,
+                                                        Converter={StaticResource BitmapAssetValueConverter}}"
+                                                       Height="200" Width="200"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Margin="5"/>
+                                                <TextBlock Grid.Row="1"
+                                                           Text="{Binding IdDishNavigation.Name}"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="20"/>
+                                                <TextBlock Grid.Row="2"
+                                                           Text="{Binding IdDishNavigation.Price}"
+                                                           HorizontalAlignment="Center"
+                                                           Margin="5"
+                                                           FontSize="16"/>
+                                                <TextBlock Grid.Row="3" Text="{Binding TotalPrice}"></TextBlock>
+                
+                                                <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                        </Grid>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>
+                </ListBox>
+                
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+        </Grid>
 </Window>

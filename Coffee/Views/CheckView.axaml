@@ -2,18 +2,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:Coffee.ViewModels"
+        xmlns:vm="using:Coffee.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:DataType="viewModels:CheckVM"
-        x:Name="ThisWindow"
         x:Class="Coffee.Views.CheckView"
+        x:Name="ThisWindow"
         Title="CheckView"
+        Icon="/Assets/icon_coffee.png"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True">
-    
         <Design.DataContext>
-                <viewModels:CheckVM/>
+                <vm:CheckViewModel/>
         </Design.DataContext>
         
         <Window.Styles>
@@ -64,11 +63,11 @@
                                           AutoGenerateColumns="False">
                                         <DataGrid.Columns>
                                                 <DataGridTextColumn IsReadOnly="True" Header="Название" FontSize="25"
-                                                                    Binding="{ReflectionBinding Name}"/>
+                                                                    Binding="{Binding Name}"/>
                                                 <DataGridTextColumn IsReadOnly="True" Header="Кол-во" FontSize="25"
-                                                                    Binding="{ReflectionBinding CountDishes}"/>
+                                                                    Binding="{Binding CountDishes}"/>
                                                 <DataGridTextColumn IsReadOnly="True" Header="Цена" FontSize="25"
-                                                                    Binding="{ReflectionBinding Price}"/>
+                                                                    Binding="{Binding Price}"/>
                                         </DataGrid.Columns>
                                 </DataGrid>
                                 
@@ -90,7 +89,6 @@
                         </Grid>
                         
                 </Border>
-                        
 
                 
                 <Grid.RowDefinitions>

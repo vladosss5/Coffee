@@ -10,6 +10,6 @@ public partial class CheckView : Window
     public CheckView()
     {
         InitializeComponent();
-        DataContext = new CheckVM();
+        DataContext = new CheckViewModel();
     }
 }

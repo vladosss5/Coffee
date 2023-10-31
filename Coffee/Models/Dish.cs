@@ -12,9 +12,10 @@ public partial class Dish
 
     public float Price { get; set; }
 
-    public string? Photo { get; set; }
-   
+    public string Photo { get; set; } = null!;
+    
     [NotMapped] public int CountDishes { get; set; } = 1;
+
     public virtual ICollection<DishCategory> DishCategories { get; set; } = new List<DishCategory>();
 
     public virtual ICollection<OrderDish> OrderDishes { get; set; } = new List<OrderDish>();

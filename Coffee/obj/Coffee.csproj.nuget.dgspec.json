@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\V-pc\\Documents\\Coffee\\Coffee\\Coffee.csproj": {}
+    "C:\\Users\\V-pc\\Documents\\yчёба\\RiderProjects\\Coffee\\Coffee\\Coffee.csproj": {}
   },
   "projects": {
-    "C:\\Users\\V-pc\\Documents\\Coffee\\Coffee\\Coffee.csproj": {
+    "C:\\Users\\V-pc\\Documents\\yчёба\\RiderProjects\\Coffee\\Coffee\\Coffee.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\V-pc\\Documents\\Coffee\\Coffee\\Coffee.csproj",
+        "projectUniqueName": "C:\\Users\\V-pc\\Documents\\yчёба\\RiderProjects\\Coffee\\Coffee\\Coffee.csproj",
         "projectName": "Coffee",
-        "projectPath": "C:\\Users\\V-pc\\Documents\\Coffee\\Coffee\\Coffee.csproj",
+        "projectPath": "C:\\Users\\V-pc\\Documents\\yчёба\\RiderProjects\\Coffee\\Coffee\\Coffee.csproj",
         "packagesPath": "C:\\Users\\V-pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\V-pc\\Documents\\Coffee\\Coffee\\obj\\",
+        "outputPath": "C:\\Users\\V-pc\\Documents\\yчёба\\RiderProjects\\Coffee\\Coffee\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\V-pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,47 +42,51 @@
           "dependencies": {
             "Avalonia": {
               "target": "Package",
-              "version": "[11.0.2, )"
+              "version": "[11.0.5, )"
+            },
+            "Avalonia.Controls.DataGrid": {
+              "target": "Package",
+              "version": "[11.0.5, )"
             },
             "Avalonia.Desktop": {
               "target": "Package",
-              "version": "[11.0.2, )"
+              "version": "[11.0.5, )"
             },
             "Avalonia.Diagnostics": {
               "target": "Package",
-              "version": "[11.0.2, )"
+              "version": "[11.0.5, )"
             },
             "Avalonia.Fonts.Inter": {
               "target": "Package",
-              "version": "[11.0.2, )"
+              "version": "[11.0.5, )"
             },
             "Avalonia.ReactiveUI": {
               "target": "Package",
-              "version": "[11.0.2, )"
+              "version": "[11.0.5, )"
             },
             "Avalonia.Themes.Fluent": {
               "target": "Package",
-              "version": "[11.0.2, )"
+              "version": "[11.0.5, )"
             },
             "MessageBox.Avalonia": {
               "target": "Package",
-              "version": "[3.1.3, )"
+              "version": "[3.1.5.1, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.12, )"
+              "version": "[7.0.13, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.12, )"
+              "version": "[7.0.13, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.12, )"
+              "version": "[7.0.13, )"
             },
             "Npgsql": {
               "target": "Package",

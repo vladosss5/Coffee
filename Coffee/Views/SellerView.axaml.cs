@@ -11,18 +11,18 @@ public partial class SellerView : Window
     public SellerView()
     {
         InitializeComponent();
-        DataContext = new SellerVM();
+        DataContext = new SellerViewModel();
     }
     
     public void CountPlus(Dish dish)
     {
         char flag = '+';
-        (DataContext as SellerVM).EditCountDishImpl(dish, flag);
+        (DataContext as SellerViewModel).EditCountDishImpl(dish, flag);
     }
     
     public void CountMinus(Dish dish)
     {
         char flag = '-';
-        (DataContext as SellerVM).EditCountDishImpl(dish, flag);
+        (DataContext as SellerViewModel).EditCountDishImpl(dish, flag);
     }
 }

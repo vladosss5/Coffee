@@ -8,11 +8,9 @@
         <entry key="Coffee/Views/AdminMainView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/AuthorizationView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/CheckView.axaml" value="Coffee/Coffee.csproj" />
-        <entry key="Coffee/Views/EmployeesPage.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/EmployeesPageView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/GoListView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/MainWindow.axaml" value="Coffee/Coffee.csproj" />
-        <entry key="Coffee/Views/MenuPage.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/MenuPageView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/ProfilePageView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/PromotionPageView.axaml" value="Coffee/Coffee.csproj" />

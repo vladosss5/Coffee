@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Reactive;
 using System.Windows.Input;
-using System.Linq;
-using System.Collections.ObjectModel;
 using Avalonia.Controls;
+using Coffee;
 using Coffee.Models;
 using Coffee.Views;
-using ReactiveUI;
+using Metsys.Bson;
 using Microsoft.EntityFrameworkCore;
+using ReactiveUI;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Coffee.ViewModels;
@@ -48,7 +50,7 @@ public class AdminMainViewModel : ViewModelBase
     
     public AdminMainViewModel()
     {
-        AuthUserNow = AuthorizationVM.AuthUser;
+        AuthUserNow = AuthorizationViewModel.AuthUser;
         ExitProfile = ReactiveCommand.Create<Window>(ExitProfileImpl);
         CreateReport = ReactiveCommand.Create<Window>(CreateReportImpl);
         
@@ -160,3 +162,4 @@ public class AdminMainViewModel : ViewModelBase
         }
     }
 }
+

@@ -13,40 +13,40 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Coffee
-build_property.ProjectDir = C:\Users\V-pc\Documents\Coffee\Coffee\
+build_property.ProjectDir = C:\Users\V-pc\Documents\yчёба\RiderProjects\Coffee\Coffee\
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/App.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Styles/AppStyle.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Styles/AppStyle.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Views/AdminMainView.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Views/AdminMainView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Views/AuthorizationView.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Views/AuthorizationView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Views/CheckView.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Views/CheckView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Views/EmployeesPageView.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Views/EmployeesPageView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Views/GoListView.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Views/GoListView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Views/MainWindow.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Views/MenuPageView.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Views/MenuPageView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Views/ProfilePageView.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Views/ProfilePageView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Views/PromotionPageView.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Views/PromotionPageView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/V-pc/Documents/Coffee/Coffee/Views/SellerView.axaml]
+[C:/Users/V-pc/Documents/yчёба/RiderProjects/Coffee/Coffee/Views/SellerView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

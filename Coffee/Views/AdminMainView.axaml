@@ -7,7 +7,8 @@
         x:Class="Coffee.Views.AdminMainView"
         x:DataType="vm:AdminMainViewModel"
         x:Name="ThisWindow"
-        Title="AdminMainView"
+        Title="Администратор"
+        Icon="/Assets/icon_coffee.png"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True">

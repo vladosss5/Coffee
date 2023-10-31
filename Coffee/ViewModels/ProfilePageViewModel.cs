@@ -3,6 +3,7 @@ using System.Reactive;
 using Avalonia.Controls;
 using Coffee.Models;
 using Coffee.Views;
+using Metsys.Bson;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using ReactiveUI;
@@ -69,15 +70,15 @@ public class ProfilePageViewModel : PageViewModelBase
     
     private void ChangePasswordImpl(Window obj)
     {
-        if (_oldpassword == AuthorizationVM.AuthUser.Password)
+        if (_oldpassword == AuthorizationViewModel.AuthUser.Password)
         {
             if (_oldpassword != _firstpassword)
             {
                 if (_firstpassword == _secondpassword)
                 {
                     AuthorizationView av = new AuthorizationView();
-                    AuthorizationVM.AuthUser.Password = _firstpassword;
-                    Helper.GetContext().Users.Update(AuthorizationVM.AuthUser);
+                    AuthorizationViewModel.AuthUser.Password = _firstpassword;
+                    Helper.GetContext().Users.Update(AuthorizationViewModel.AuthUser);
                     Helper.GetContext().SaveChanges();
                     MessageBoxManager.GetMessageBoxStandard("Успех", "Пароль изменён", ButtonEnum.Ok, Icon.Success).ShowWindowDialogAsync(obj);
                     av.Show();

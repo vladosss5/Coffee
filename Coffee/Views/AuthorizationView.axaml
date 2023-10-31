@@ -5,15 +5,15 @@
         xmlns:viewModels="clr-namespace:Coffee.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Coffee.Views.AuthorizationView"
-        x:DataType="viewModels:AuthorizationVM"
+        x:DataType="viewModels:AuthorizationViewModel"
         x:Name="ThisWindow"
         Title="AuthorizationView"
+        Icon="/Assets/icon_coffee.png"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen"
         ExtendClientAreaToDecorationsHint="True">
-        
-        <Design.DataContext>
-                <viewModels:AuthorizationVM/>
+    <Design.DataContext>
+                <viewModels:AuthorizationViewModel/>
         </Design.DataContext>
     
         <Window.Styles>
@@ -47,7 +47,7 @@
                                          HorizontalAlignment="Left"/>   
                                 
                                 <Button  Grid.Column="1" Grid.Row="1" Content="Назад"
-                                         Command="{Binding ButtonEnter}"
+                                         Command="{Binding ButtonBack}"
                                          CommandParameter="{Binding ElementName=ThisWindow}"
                                          Background="Gray"
                                          HorizontalAlignment="Right"/>   

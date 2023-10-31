@@ -9,9 +9,9 @@
              x:Name="ThisPage"
              x:CompileBindings="True">
     
-    <Design.DataContext>
+        <Design.DataContext>
                 <vm:EmployeesPageViewModel/>
-    </Design.DataContext>
+        </Design.DataContext>
 
         <Grid Background="Transparent"
                 Margin="5"

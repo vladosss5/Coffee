@@ -10,6 +10,6 @@ public partial class AuthorizationView : Window
     public AuthorizationView()
     {
         InitializeComponent();
-        DataContext = new AuthorizationVM();
+        DataContext = new AuthorizationViewModel();
     }
 }

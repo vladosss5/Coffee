@@ -11,7 +11,8 @@ public partial class Category
     public string Name { get; set; } = null!;
 
     public string? Photo { get; set; }
-    [NotMapped] public bool SelectCategory { get; set; } = false; 
+    
+    [NotMapped] public bool SelectCategory { get; set; } = false;
 
     public virtual ICollection<DishCategory> DishCategories { get; set; } = new List<DishCategory>();
 }

@@ -2,10 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
-using Avalonia.Controls;
 using Coffee.Context;
 using Coffee.Models;
-using DynamicData;
+using Metsys.Bson;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using ReactiveUI;
@@ -140,14 +139,15 @@ public class PromotionPageViewModel : PageViewModelBase
         else
         {
             _dishList.Remove(edentity);
-            _dishList.Add(new Dish
+            var p0 = new Dish
             {
-                IdDish = dish.IdDish,
                 Name = dish.Name,
                 Price = dish.Price * dish.CountDishes,
                 CountDishes = dish.CountDishes,
                 Photo = dish.Photo
-            });
+            };
+            p0.IdDish = dish.IdDish;
+            _dishList.Add(p0);
         }
         var date = DateEndAction;
     }
