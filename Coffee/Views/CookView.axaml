@@ -1,0 +1,110 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:Coffee.ViewModels"
+        xmlns:coffee="clr-namespace:Coffee"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Coffee.Views.CookView"
+        x:DataType="viewModels:SellerViewModel"
+        x:Name="ThisWindow"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="True"
+        Icon="/Assets/icon_coffee.png"
+        Title="CookView">
+    
+        <Window.Styles>
+                <StyleInclude Source="/Styles/AppStyle.axaml" />
+        </Window.Styles>
+        
+        <Design.DataContext>
+                <viewModels:CookViewModel/>
+        </Design.DataContext>
+        
+        <Grid Margin="10">
+                <Border Grid.Column="0" Grid.Row="0" 
+                        Background="Azure"
+                        CornerRadius="25"
+                        Margin="5">
+                        <TextBlock  Text="Оплаченые" FontSize="35"
+                                    HorizontalAlignment="Center" Margin="15"
+                                    FontWeight="Bold"/>
+                </Border>
+                
+                <Border Grid.Column="1" Grid.Row="0" 
+                        Background="Azure"
+                        CornerRadius="25"
+                        Margin="5">
+                        <TextBlock  Text="Принятые" FontSize="35"
+                                    HorizontalAlignment="Center" Margin="15"
+                                    FontWeight="Bold"/>
+                </Border>
+                
+                <Border Grid.Column="0" Grid.Row="1" 
+                        CornerRadius="25" Background="Azure"
+                        Padding="10" Margin="5">
+                        <DataGrid ItemsSource="{Binding GetOrder}"
+                                  Background="Transparent">
+                                <DataGrid.Columns>
+                                        <DataGridTextColumn Header="№" Binding="{Binding IdOrder}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Статус" Binding="{Binding IdStatusNavigation.Name}" IsReadOnly="True"/>
+                                        <DataGridTemplateColumn Header="Принять">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                                <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                                        Height="25" Width="25" Background="Transparent"
+                                                                        Command="{Binding ElementName=ThisWindow, Path=RemoveEmployee}" 
+                                                                        CommandParameter="{Binding }"
+                                                                        CornerRadius="50">
+                                                                        <!-- <Image Source="/Assets/delete.png"/> -->
+                                                                </Button>
+                                                        </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                                <DataGrid.RowDetailsTemplate>
+                                        <DataTemplate>
+                                                <DataGrid ItemsSource="{Binding OrderDishes}">
+                                                        <DataGrid.Columns>
+                                                                <DataGridTextColumn Header="Название" Binding="{Binding IdDishNavigation.Name}"/>
+                                                                <DataGridTextColumn Header="Кол-во" Binding="{Binding CountDishes}"/>
+                                                        </DataGrid.Columns>
+                                                </DataGrid>
+                                        </DataTemplate>
+                                </DataGrid.RowDetailsTemplate>
+                        </DataGrid>
+                </Border>
+                
+                <Border Grid.Column="1" Grid.Row="1"
+                        CornerRadius="25" Background="Azure"
+                        Padding="10" Margin="5">
+                        <DataGrid ItemsSource="{Binding SetOrder}"
+                                  Background="Transparent">
+                                <DataGrid.Columns>
+                                        <DataGridTextColumn Header="№" Binding="{Binding IdOrder}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Статус" Binding="{Binding IdStatusNavigation.Name}" IsReadOnly="True"/>
+                                </DataGrid.Columns>
+                                <DataGrid.RowDetailsTemplate>
+                                        <DataTemplate>
+                                                <DataGrid ItemsSource="{Binding OrderDishes}">
+                                                        <DataGrid.Columns>
+                                                                <DataGridTextColumn Header="Название" Binding="{Binding IdDishNavigation.Name}"/>
+                                                                <DataGridTextColumn Header="Кол-во" Binding="{Binding CountDishes}"/>
+                                                        </DataGrid.Columns>
+                                                </DataGrid>
+                                        </DataTemplate>
+                                </DataGrid.RowDetailsTemplate>
+                        </DataGrid>
+                </Border>
+                
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+        </Grid>
+</Window>

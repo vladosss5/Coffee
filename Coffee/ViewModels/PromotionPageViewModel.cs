@@ -20,7 +20,7 @@ public class PromotionPageViewModel : PageViewModelBase
     private ObservableCollection<Promotion> _promotion;
     private ObservableCollection<Dish> _dishList = new ObservableCollection<Dish>();
     private DateTimeOffset _dateEndAction = DateTimeOffset.Now;
-    private int _discountPercent;
+    private int _discountPercent = 0;
     private MyDbContext db = new MyDbContext();
 
     public int DiscountPercent

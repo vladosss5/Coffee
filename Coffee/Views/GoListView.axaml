@@ -92,19 +92,18 @@
                         </ListBox.ItemTemplate>
                 </ListBox>
 
+<!-- ___________________________________Акции_________________________________ -->
                 <ListBox Grid.Row = "1" Grid.Column="2"
                          Name="PromotionListBox"
                          ItemsSource="{Binding Promotion}"
                          CornerRadius="10" Margin="5" Background="Transparent">
                         <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                        <Grid Margin="10">
+                                        <Grid Margin="5">
                                                 <Image Grid.Row="0"
                                                        Source="{Binding IdDishNavigation.Photo,
                                                         Converter={StaticResource BitmapAssetValueConverter}}"
-                                                       Height="200" Width="200"
-                                                       VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                       Margin="5"/>
+                                                       VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
                                                 <TextBlock Grid.Row="1"
                                                            Text="{Binding IdDishNavigation.Name}"
                                                            HorizontalAlignment="Center"
@@ -112,10 +111,17 @@
                                                            FontSize="20"/>
                                                 <TextBlock Grid.Row="2"
                                                            Text="{Binding IdDishNavigation.Price}"
+                                                           FontWeight="Bold"
+                                                           TextDecorations="Strikethrough"
                                                            HorizontalAlignment="Center"
                                                            Margin="5"
-                                                           FontSize="16"/>
-                                                <TextBlock Grid.Row="3" Text="{Binding TotalPrice}"></TextBlock>
+                                                           FontSize="20"/>
+                                                <TextBlock Grid.Row="3" 
+                                                           Text="{Binding TotalPrice}"
+                                                           FontWeight="Bold"
+                                                           FontSize="34"
+                                                           HorizontalAlignment="Center"
+                                                           Margin="5"/>
                 
                                                 <Grid.RowDefinitions>
                                                         <RowDefinition/>
