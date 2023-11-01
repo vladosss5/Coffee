@@ -25,4 +25,9 @@ public partial class SellerView : Window
         char flag = '-';
         (DataContext as SellerViewModel).EditCountDishImpl(dish, flag);
     }
+
+    public void DeleteDish(Dish dish)
+    {
+        (DataContext as SellerViewModel).DeleteDishIncartImpl(dish);
+    }
 }

@@ -7,13 +7,14 @@ using Coffee.Models;
 using Coffee.Views;
 using DynamicData;
 using Metsys.Bson;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using ReactiveUI;
 
 namespace Coffee.ViewModels;
 
 public class SellerViewModel : ViewModelBase
 {
-    // private ObservableCollection<Order> _order;
     private ObservableCollection<Dish> _dishes;
     private ObservableCollection<DishCategory> _dishCategories;
     private ObservableCollection<Category> _categories;
@@ -22,13 +23,7 @@ public class SellerViewModel : ViewModelBase
     private static Category _selectCategory;
     private static Dish _selectedDishes;
     private static float _prePrice;
-    // public Order LastOrder;
-    
-    // public ObservableCollection<Order> Order
-    // {
-    //     get => _order;
-    //     set => this.RaiseAndSetIfChanged(ref _order, value);
-    // }
+
     public ObservableCollection<Dish> DishesInSelectCat
     {
         get => _dishesInSelectCat;
@@ -127,23 +122,25 @@ public class SellerViewModel : ViewModelBase
             Where(x => _dishesInCart.Select(x => x.IdDish).
                 Contains(x.IdDish)).ToList();
 
-        Order order = new Order();
-        order.DateAndTime = DateTime.Now;
-        order.FullPrice = _dishesInCart.Sum(x => x.Price * x.CountDishes);
-        order.OrderDishes = dishes.Select(x => new OrderDish() { IdDishNavigation = x, CountDishes = x.CountDishes }).ToList();
-        order.IdStatus = 1;
-        Helper.GetContext().Orders.Add(order);
-        Helper.GetContext().Orders.UpdateRange();
-        Helper.GetContext().SaveChanges();
+        if (_prePrice > 0)
+        {
+            Order order = new Order();
+            order.DateAndTime = DateTime.Now;
+            order.FullPrice = _dishesInCart.Sum(x => x.Price * x.CountDishes);
+            order.OrderDishes = dishes.Select(x => new OrderDish() { IdDishNavigation = x, CountDishes = x.CountDishes }).ToList();
+            order.IdStatus = 1;
+            Helper.GetContext().Orders.Add(order);
+            Helper.GetContext().Orders.UpdateRange();
+            Helper.GetContext().SaveChanges();
 
-        // foreach (var d in DishesInSelectCat)
-        // {
-        //     d.CountDishes = 1;
-        // }
-        
-        CheckView cvw = new CheckView();
-        cvw.Show();
-        obj.Close();
+            CheckView cvw = new CheckView();
+            cvw.Show();
+            obj.Close();
+        }
+        else
+        {
+            MessageBoxManager.GetMessageBoxStandard("Ошибка", "Вы ничего не выбрали :-(", ButtonEnum.Ok, Icon.Error).ShowAsync();
+        }
     }
     
     public void EditCountDishImpl(Dish dish, char f)
@@ -175,5 +172,11 @@ public class SellerViewModel : ViewModelBase
         }
         
         DishesInSelectCat[i] = dish;
+    }
+
+    public void DeleteDishIncartImpl(Dish dish)
+    {
+        DishesInCart.Remove(dish);
+        PrePrice = _dishesInCart.Sum(x => x.Price * x.CountDishes);
     }
 }

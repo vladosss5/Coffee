@@ -79,7 +79,7 @@
                         Margin="5" CornerRadius="3"
                         Command="{Binding SelectImge}"
                         CommandParameter="{Binding $parent[Window]}">
-                    <Image Source="/Assets/folder.png"></Image>
+                    <Image Source="/Assets/folder.png"/>
                 </Button>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
