@@ -96,6 +96,12 @@ public class MenuPageViewModel : PageViewModelBase
         protected set => throw new NotSupportedException();
     }
     
+    public override bool OpenСategoriesPage
+    {
+        get => true;
+        protected set => throw new NotSupportedException();
+    }
+    
     public ReactiveCommand<Unit, Unit> AddDish { get; }
     public ReactiveCommand<Window, Unit> SelectImge { get; }
 

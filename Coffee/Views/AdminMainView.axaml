@@ -30,26 +30,32 @@
                                         VerticalContentAlignment="Center"
                                         HorizontalAlignment="Stretch"
                                         Height="30" Margin="5"
-                                        Command="{Binding OpenMenuDishPage}"></Button>
+                                        Command="{Binding OpenMenuDishPage}"/>
+                                
+                                <Button Content="Категории блюд" HorizontalContentAlignment="Center" 
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                        Height="30" Margin="5"
+                                        Command="{Binding OpenСategoriesPage}"/>
                     
                                 <Button Content="Сотрудники" HorizontalContentAlignment="Center" 
                                         VerticalContentAlignment="Center"
                                         HorizontalAlignment="Stretch"
                                         Height="30" Margin="5"
-                                        Command="{Binding OpenEmployeesPage}"></Button>
+                                        Command="{Binding OpenEmployeesPage}"/>
                                 
                                 <Button Content="Акции" HorizontalContentAlignment="Center" 
                                         VerticalContentAlignment="Center"
                                         HorizontalAlignment="Stretch"
                                         Height="30" Margin="5"
-                                        Command="{Binding OpenPromotionPage}"></Button>
+                                        Command="{Binding OpenPromotionPage}"/>
                     
                                 <Button Content="Создать отчёт" HorizontalContentAlignment="Center" 
                                         VerticalContentAlignment="Center"
                                         HorizontalAlignment="Stretch"
                                         Height="30" Margin="5"
                                         Command="{Binding CreateReport}" 
-                                        CommandParameter="{Binding ElementName=ThisWindow}" ></Button>
+                                        CommandParameter="{Binding ElementName=ThisWindow}"/>
                     
                                 <Button Content="Профиль" HorizontalContentAlignment="Center" 
                                         VerticalContentAlignment="Center"
@@ -62,7 +68,7 @@
                                         HorizontalAlignment="Stretch"
                                         Height="30" Margin="5"
                                         Command="{Binding ExitProfile}"
-                                        CommandParameter="{Binding ElementName=ThisWindow}"></Button>
+                                        CommandParameter="{Binding ElementName=ThisWindow}"/>
                         </StackPanel>
                 </Border>
                 

@@ -14,6 +14,7 @@ public class CookViewModel : ViewModelBase
     private ObservableCollection<Order> _allOrders;
     private ObservableCollection<Dish> _dishes;
     private ObservableCollection<OrderDish> _orderDishes;
+    private ObservableCollection<StatusesOrder> _statusesOrders;
     private ObservableCollection<Order> _getOrder = new ObservableCollection<Order>();
     private ObservableCollection<Order> _setOrder = new ObservableCollection<Order>();
     
@@ -37,6 +38,12 @@ public class CookViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _orderDishes, value);
     }
 
+    public ObservableCollection<StatusesOrder> StatusesOrders
+    {
+        get => _statusesOrders;
+        set => this.RaiseAndSetIfChanged(ref _statusesOrders, value);
+    }
+
     public ObservableCollection<Order> GetOrder
     {
         get => _getOrder;
@@ -54,6 +61,7 @@ public class CookViewModel : ViewModelBase
         AllOrders = new ObservableCollection<Order>(Helper.GetContext().Orders.ToList());
         Dishes = new ObservableCollection<Dish>(Helper.GetContext().Dishes.ToList());
         OrderDishes = new ObservableCollection<OrderDish>(Helper.GetContext().OrderDishes.ToList());
+        StatusesOrders = new ObservableCollection<StatusesOrder>(Helper.GetContext().StatusesOrders.ToList());
         GetOrder.AddRange(AllOrders.Where(o => o.IdStatus == 1));
         SetOrder.AddRange(AllOrders.Where(o => (o.IdStatus == 2 || o.IdStatus == 3) && o.DateAndTime.Day == DateTime.Now.Day));
     }
@@ -69,6 +77,10 @@ public class CookViewModel : ViewModelBase
 
     public void SetOrderImpl(Order order)
     {
-        
+        order.IdStatus = 3;
+        SetOrder.Remove(order);
+        SetOrder.Add(order);
+        db.Orders.Update(order);
+        db.SaveChanges();
     }
 }

@@ -7,6 +7,9 @@
         <entry key="Coffee/Styles/AppStyle.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/AdminMainView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/AuthorizationView.axaml" value="Coffee/Coffee.csproj" />
+        <entry key="Coffee/Views/CategoriesPage.axaml" value="Coffee/Coffee.csproj" />
+        <entry key="Coffee/Views/CategoriesPageView.axaml" value="Coffee/Coffee.csproj" />
+        <entry key="Coffee/Views/CategoryPage.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/CheckView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/CookView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/EmployeesPageView.axaml" value="Coffee/Coffee.csproj" />
@@ -16,6 +19,7 @@
         <entry key="Coffee/Views/ProfilePageView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/PromotionPageView.axaml" value="Coffee/Coffee.csproj" />
         <entry key="Coffee/Views/SellerView.axaml" value="Coffee/Coffee.csproj" />
+        <entry key="Coffee/Views/СategoriesPageView.axaml" value="Coffee/Coffee.csproj" />
       </map>
     </option>
   </component>

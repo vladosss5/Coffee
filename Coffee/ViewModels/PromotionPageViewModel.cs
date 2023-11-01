@@ -16,7 +16,6 @@ public class PromotionPageViewModel : PageViewModelBase
     private Promotion _newPromotion = new Promotion();
     private ObservableCollection<Promotion> Promotions = new ObservableCollection<Promotion>();
     private ObservableCollection<Dish> _dish;
-    private bool _OpenPromotionPage;
     private ObservableCollection<Promotion> _promotion;
     private ObservableCollection<Dish> _dishList = new ObservableCollection<Dish>();
     private DateTimeOffset _dateEndAction = DateTimeOffset.Now;
@@ -35,6 +34,8 @@ public class PromotionPageViewModel : PageViewModelBase
         set => this.RaiseAndSetIfChanged(ref _dateEndAction, value);
     }
     
+    
+    private bool _OpenPromotionPage;
     public override bool OpenPromotionPage
     {
         get => _OpenPromotionPage;
@@ -54,6 +55,12 @@ public class PromotionPageViewModel : PageViewModelBase
     }
 
     public override bool OpenProfilePage
+    {
+        get => true;
+        protected set => throw new NotSupportedException();
+    }
+    
+    public override bool OpenСategoriesPage
     {
         get => true;
         protected set => throw new NotSupportedException();

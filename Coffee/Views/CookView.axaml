@@ -55,8 +55,8 @@
                                                         <DataTemplate>
                                                                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                                                                         Height="25" Width="25" Background="DarkOrange"
-                                                                        Command="{Binding ElementName=ThisWindow, Path=GettingOrder}" 
-                                                                        CommandParameter="{Binding }"
+                                                                        Command="{Binding ElementName=ThisWindow, Path=GettingOrder}"
+                                                                        CommandParameter="{Binding}"
                                                                         CornerRadius="20">
                                                                         <!-- <Image Source="/Assets/delete.png"/> -->
                                                                 </Button>
@@ -86,14 +86,14 @@
                                   Background="Transparent">
                                 <DataGrid.Columns>
                                         <DataGridTextColumn Header="№" Binding="{Binding IdOrder}" IsReadOnly="True"/>
-                                        <DataGridTextColumn Header="Статус" Binding="{Binding IdStatusNavigation.Name}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Статус" Binding="{Binding IdStatus}" IsReadOnly="True"/>
                                         <DataGridTemplateColumn Header="Готово">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                                                                         Height="25" Width="25" Background="DarkOrange"
                                                                         Command="{Binding ElementName=ThisWindow, Path=SetOrder}" 
-                                                                        CommandParameter="{Binding }"
+                                                                        CommandParameter="{Binding}"
                                                                         CornerRadius="50">
                                                                         <!-- <Image Source="/Assets/delete.png"/> -->
                                                                 </Button>
