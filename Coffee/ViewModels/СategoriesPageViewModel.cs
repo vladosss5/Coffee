@@ -79,6 +79,12 @@ public class СategoriesPageViewModel : PageViewModelBase
         get => true;
         protected set => throw new NotSupportedException();
     }
+
+    public override bool OpenOrdersPage
+    {
+        get => true;
+        protected set => throw new NotSupportedException();
+    }
     
     public ReactiveCommand<Unit, Unit> AddCategory { get; }
     public ReactiveCommand<Window, Unit> SelectImge { get; }

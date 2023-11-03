@@ -66,6 +66,12 @@ public class ProfilePageViewModel : PageViewModelBase
         protected set => throw new NotSupportedException();
     }
     
+    public override bool OpenOrdersPage
+    {
+        get => true;
+        protected set => throw new NotSupportedException();
+    }
+    
     public ReactiveCommand<Window, Unit> ChangePassword { get; }
     
     public ProfilePageViewModel()

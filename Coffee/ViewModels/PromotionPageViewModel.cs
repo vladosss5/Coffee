@@ -66,6 +66,12 @@ public class PromotionPageViewModel : PageViewModelBase
         protected set => throw new NotSupportedException();
     }
     
+    public override bool OpenOrdersPage
+    {
+        get => true;
+        protected set => throw new NotSupportedException();
+    }
+    
     public ObservableCollection<Promotion> Promotion
     {
         get => _promotion;

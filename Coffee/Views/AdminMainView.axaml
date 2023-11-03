@@ -49,6 +49,12 @@
                                         HorizontalAlignment="Stretch"
                                         Height="30" Margin="5"
                                         Command="{Binding OpenPromotionPage}"/>
+                                
+                                <Button Content="Заказы" HorizontalContentAlignment="Center" 
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Stretch"
+                                        Height="30" Margin="5"
+                                        Command="{Binding OpenOrdersPage}"/>
                     
                                 <Button Content="Создать отчёт" HorizontalContentAlignment="Center" 
                                         VerticalContentAlignment="Center"

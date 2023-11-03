@@ -1,0 +1,96 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Coffee.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Coffee.Views.OrdersPageView"
+             x:DataType="viewModels:OrdersPageViewModel"
+             x:Name="ThisPage"
+             x:CompileBindings="True">
+    
+    <Design.DataContext>
+        <viewModels:OrdersPageViewModel/>
+    </Design.DataContext>
+    
+    <Grid Margin="10">
+        <Border Grid.Row="0" Grid.Column="0" 
+                Background="Azure" 
+                CornerRadius="20" 
+                Margin="10">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                       FontSize="32">Все заказы</TextBlock>
+        </Border>
+        
+        <Border Grid.Row="0" Grid.Column="1" 
+                Background="Azure" 
+                CornerRadius="20" 
+                Margin="10">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                       FontSize="32">Логи заказов</TextBlock>
+        </Border>
+        
+        <Border Grid.Column="0" Grid.Row="1"
+                Background="Azure" CornerRadius="20"
+                Margin="10">
+            <DataGrid Name="OrdersGrid"
+                      ItemsSource="{Binding Orders}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding IdOrder}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding IdStatusNavigation.Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding FullPrice}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Создан" Binding="{Binding DateAndTime}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                                <DataGrid Name="SetDishesGrid" 
+                                          ItemsSource="{ReflectionBinding OrderDishes}">
+                                        <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Название" IsReadOnly="True"
+                                                        Binding="{ReflectionBinding IdDishNavigation.Name}"/>
+                                                <DataGridTextColumn Header="Кол-во" IsReadOnly="True"
+                                                        Binding="{ReflectionBinding CountDishes}"/>
+                                        </DataGrid.Columns>
+                                </DataGrid>
+                        </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </Border>
+        
+        <Border Grid.Column="1" Grid.Row="1"
+                Background="Azure" CornerRadius="20"
+                Margin="10">
+            <DataGrid Name="LogOrdersGrid"
+                      ItemsSource="{Binding Cookings}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding IdCooking}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="№ Заказа" Binding="{Binding IdOrder}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="№ Сотрудника" Binding="{Binding IdUser}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Принят" Binding="{Binding DateAdmission}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+                <!-- <DataGrid.RowDetailsTemplate> -->
+                <!--     <DataTemplate> -->
+                <!--         <DataGrid Name="SetDishesGrid" -->
+                <!--                   ItemsSource="{ReflectionBinding Orders}"> -->
+                <!--             <DataGrid.Columns> -->
+                <!--                 <DataGridTextColumn Header="№" Binding="{ReflectionBinding IdOrder}" IsReadOnly="True"/> -->
+                <!--                 <DataGridTextColumn Header="Статус" Binding="{ReflectionBinding IdStatusNavigation.Name}" IsReadOnly="True"/> -->
+                <!--                 <DataGridTextColumn Header="Цена" Binding="{ReflectionBinding FullPrice}" IsReadOnly="True"/> -->
+                <!--                 <DataGridTextColumn Header="Создан" Binding="{ReflectionBinding DateAndTime}" IsReadOnly="True"/> -->
+                <!--             </DataGrid.Columns> -->
+                <!--         </DataGrid> -->
+                <!--     </DataTemplate> -->
+                <!-- </DataGrid.RowDetailsTemplate> -->
+            </DataGrid>
+        </Border>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+    </Grid>
+</UserControl>

@@ -103,6 +103,12 @@ public class EmployeesPageViewModel : PageViewModelBase
         get => true;
         protected set => throw new NotSupportedException();
     }
+    
+    public override bool OpenOrdersPage
+    {
+        get => true;
+        protected set => throw new NotSupportedException();
+    }
 
     public ReactiveCommand<Unit, Unit> AddEmployee { get; }
 

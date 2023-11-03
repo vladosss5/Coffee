@@ -40,6 +40,7 @@ public class AdminMainViewModel : ViewModelBase
     public ICommand OpenPromotionPage { get; }
     public ICommand OpenProfilePage { get; }
     public ICommand OpenСategoriesPage { get; }
+    public ICommand OpenOrdersPage { get; }
     
     private readonly PageViewModelBase[] Pages = 
     { 
@@ -47,7 +48,8 @@ public class AdminMainViewModel : ViewModelBase
         new EmployeesPageViewModel(),
         new PromotionPageViewModel(),
         new ProfilePageViewModel(),
-        new СategoriesPageViewModel()
+        new СategoriesPageViewModel(),
+        new OrdersPageViewModel()
     };
     
     public AdminMainViewModel()
@@ -74,6 +76,9 @@ public class AdminMainViewModel : ViewModelBase
 
         var canOpenСategoriesPage = this.WhenAnyValue(x => x.CurrentPage.OpenСategoriesPage);
         OpenСategoriesPage = ReactiveCommand.Create(OpenСategoriesPageImpl, canOpenСategoriesPage);
+
+        var canOpenOrdersPage = this.WhenAnyValue(x => x.CurrentPage.OpenOrdersPage);
+        OpenOrdersPage = ReactiveCommand.Create(OpenOrdersPageImpl, canOpenOrdersPage);
     }
 
     private void OpenMenuDishPageImpl()
@@ -99,6 +104,11 @@ public class AdminMainViewModel : ViewModelBase
     private void OpenСategoriesPageImpl()
     {
         CurrentPage = Pages[4];
+    }
+    
+    private void OpenOrdersPageImpl()
+    {
+        CurrentPage = Pages[5];
     }
     
     private void ExitProfileImpl(Window obj)
