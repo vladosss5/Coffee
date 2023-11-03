@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Coffee.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="1080" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1900" d:DesignHeight="450"
              x:Class="Coffee.Views.EmployeesPageView"
              x:DataType="vm:EmployeesPageViewModel"
              x:Name="ThisPage"
@@ -29,11 +29,11 @@
                                         <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
                                                         <Button HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                                Height="25" Width="25" Background="Transparent"
+                                                                Background="Transparent"
                                                                 Command="{Binding ElementName=ThisPage, Path=RemoveEmployee}" 
                                                                 CommandParameter="{Binding }"
                                                                 CornerRadius="50">
-                                                                <Image Source="/Assets/delete.png"/>
+                                                                <Image Height="15" Width="15" Source="/Assets/delete.png"/>
                                                         </Button>
                                                 </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>

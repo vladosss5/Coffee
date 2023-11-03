@@ -48,7 +48,7 @@
         </Border>
         
         <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
-                <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="3"
+                <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="4"
                         Background="Azure" Margin="5"
                         CornerRadius="25"/>
                 
@@ -56,7 +56,7 @@
                          Name="CategoryGrid"
                          ItemsSource="{Binding Category}"
                          SelectedItem="{Binding SelectCategory}"
-                         Background="Transparent" Margin="5,5,5,5"
+                         Background="Transparent" Margin="10"
                          VerticalAlignment="Stretch" CornerRadius="25,25,0,0">
                         <ListBox.ItemTemplate>
                                 <DataTemplate>
@@ -85,12 +85,21 @@
                            Text="Итого:" VerticalAlignment="Center"
                            HorizontalAlignment="Center"
                            FontWeight="Bold"
+                           Margin="10"
                            FontSize="20"/>
                 
                 <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
                         VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
-                        Content="Оплатить!" FontSize="20" FontWeight="Bold"
+                        Content="Очистить корзину" FontSize="20" FontWeight="Bold"
                         Background="Azure"
+                        HorizontalContentAlignment="Center"
+                        CornerRadius="10" Margin="5"
+                        Command="{ReflectionBinding ClearCart}"/>
+                
+                <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
+                        VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                        Content="Оплатить!" FontSize="20" FontWeight="Bold"
+                        Background="#22b804"
                         HorizontalContentAlignment="Center"
                         CornerRadius="0, 0,25,25"
                         Padding="15" Margin="5,15,5, 5"
@@ -103,6 +112,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -216,10 +226,10 @@
                                                    FontSize="18"/>
                                         <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"
                                                 VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                Background="Transparent" CornerRadius="20" Margin="5"
+                                                Background="Transparent" CornerRadius="50" Margin="5"
                                                 Command="{Binding ElementName=ThisWindow, Path=DeleteDish}" 
                                                 CommandParameter="{Binding }">
-                                                <Image Height="15" Width="15" Margin="2" Source="/Assets/delete.png"/>
+                                                <Image Height="25" Width="25" Margin="2" Source="/Assets/delete.png"/>
                                         </Button>
                                         
                                         <Grid.RowDefinitions>

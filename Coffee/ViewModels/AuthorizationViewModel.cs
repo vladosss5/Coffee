@@ -73,5 +73,11 @@ public class AuthorizationViewModel : ViewModelBase
             av.Show();
             obj.Close();
         }
+        else if (user.IdPost == 2)
+        {
+            CookView cv = new CookView();
+            cv.Show();
+            obj.Close();
+        }
     }
 }

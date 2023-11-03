@@ -19,7 +19,7 @@ public partial class CookView : Window
         (DataContext as CookViewModel).GetOrderImpl(order);
     }
     
-    public void SetOrder(Order order)
+    public void SettingOrder(Order order)
     {
         (DataContext as CookViewModel).SetOrderImpl(order);
     }

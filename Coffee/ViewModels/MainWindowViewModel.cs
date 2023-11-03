@@ -1,5 +1,6 @@
 ﻿using System.Reactive;
 using Avalonia.Controls;
+using Coffee.Models;
 using Coffee.Views;
 using ReactiveUI;
 

@@ -69,8 +69,10 @@
                                                 <DataGrid Name = "PaidDishGrid"
                                                           ItemsSource="{ReflectionBinding OrderDishes}">
                                                         <DataGrid.Columns>
-                                                                <DataGridTextColumn Header="Название" Binding="{ReflectionBinding IdDishNavigation.Name}"/>
-                                                                <DataGridTextColumn Header="Кол-во" Binding="{ReflectionBinding CountDishes}"/>
+                                                                <DataGridTextColumn Header="Название" IsReadOnly="True" 
+                                                                        Binding="{ReflectionBinding IdDishNavigation.Name}"/>
+                                                                <DataGridTextColumn Header="Кол-во" IsReadOnly="True"
+                                                                        Binding="{ReflectionBinding CountDishes}"/>
                                                         </DataGrid.Columns>
                                                 </DataGrid>
                                         </DataTemplate>
@@ -86,13 +88,13 @@
                                   Background="Transparent">
                                 <DataGrid.Columns>
                                         <DataGridTextColumn Header="№" Binding="{Binding IdOrder}" IsReadOnly="True"/>
-                                        <DataGridTextColumn Header="Статус" Binding="{Binding IdStatus}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Статус" Binding="{Binding IdStatusNavigation.Name}" IsReadOnly="True"/>
                                         <DataGridTemplateColumn Header="Готово">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                                 <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                                                                         Height="25" Width="25" Background="DarkOrange"
-                                                                        Command="{Binding ElementName=ThisWindow, Path=SetOrder}" 
+                                                                        Command="{Binding ElementName=ThisWindow, Path=SettingOrder}" 
                                                                         CommandParameter="{Binding}"
                                                                         CornerRadius="50">
                                                                         <!-- <Image Source="/Assets/delete.png"/> -->
@@ -106,8 +108,10 @@
                                                 <DataGrid Name="SetDishesGrid" 
                                                           ItemsSource="{ReflectionBinding OrderDishes}">
                                                         <DataGrid.Columns>
-                                                                <DataGridTextColumn Header="Название" Binding="{ReflectionBinding IdDishNavigation.Name}"/>
-                                                                <DataGridTextColumn Header="Кол-во" Binding="{ReflectionBinding CountDishes}"/>
+                                                                <DataGridTextColumn Header="Название" IsReadOnly="True"
+                                                                        Binding="{ReflectionBinding IdDishNavigation.Name}"/>
+                                                                <DataGridTextColumn Header="Кол-во" IsReadOnly="True"
+                                                                        Binding="{ReflectionBinding CountDishes}"/>
                                                         </DataGrid.Columns>
                                                 </DataGrid>
                                         </DataTemplate>

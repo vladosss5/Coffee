@@ -106,6 +106,7 @@ public class SellerViewModel : ViewModelBase
     }
     
     public ReactiveCommand<Window, Unit> BuyButton { get; }
+    public ReactiveCommand<Unit, Unit> ClearCart { get; }
     
     public SellerViewModel()
     {
@@ -113,6 +114,22 @@ public class SellerViewModel : ViewModelBase
         Category = new ObservableCollection<Category>(Helper.GetContext().Categories.ToList());
         Dish = new ObservableCollection<Dish>(Helper.GetContext().Dishes.ToList());
         BuyButton = ReactiveCommand.Create<Window>(CreateOrderImpl);
+        ClearCart = ReactiveCommand.Create(ClearCartImpl);
+    }
+
+    private void ClearAllCollection()
+    {
+        DishesInCart.Clear();
+        PrePrice = 0;
+        foreach (var d in DishesInSelectCat)
+        {
+            d.CountDishes = 1;
+        }
+    }
+
+    private void ClearCartImpl()
+    {
+        DishesInCart.Clear();
     }
 
     private void CreateOrderImpl(Window obj)
@@ -135,6 +152,7 @@ public class SellerViewModel : ViewModelBase
 
             CheckView cvw = new CheckView();
             cvw.Show();
+            ClearAllCollection();
             obj.Close();
         }
         else

@@ -56,11 +56,11 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button HorizontalAlignment="Center" VerticalAlignment="Center"
-                                    Height="25" Width="25" Background="Transparent"
+                                    Background="Transparent"
                                     Command="{Binding ElementName=ThisPage, Path=RemoveCategory}" 
                                     CommandParameter="{Binding }"
                                     CornerRadius="50">
-                                <Image Source="/Assets/delete.png"/>
+                                <Image Height="15" Width="15" Source="/Assets/delete.png"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
