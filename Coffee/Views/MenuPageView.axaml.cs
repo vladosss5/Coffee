@@ -14,8 +14,8 @@ public partial class MenuPageView : UserControl
         DataContext = new MenuPageViewModel();
     }
 
-    public void RemoveDish(Dish dish)
+    public void RemoveDish(DishCategory DC)
     {
-        (DataContext as MenuPageViewModel).RemoveDishImpl(dish);
+        (DataContext as MenuPageViewModel).RemoveDishImpl(DC);
     }
 }

@@ -43,7 +43,7 @@
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                         <DataTemplate>
-                                <DataGrid Name="SetDishesGrid" 
+                                <DataGrid Name="DishesGrid" 
                                           ItemsSource="{ReflectionBinding OrderDishes}">
                                         <DataGrid.Columns>
                                                 <DataGridTextColumn Header="Название" IsReadOnly="True"

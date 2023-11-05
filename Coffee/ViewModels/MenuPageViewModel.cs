@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reactive;
+using System.Reflection.Metadata.Ecma335;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
 using Coffee.Context;
@@ -21,7 +22,7 @@ public class MenuPageViewModel : PageViewModelBase
     public string ImagePath;
     public string DestImagePath;
     public string ImageProgectPath;
-    public string AssetsUserPath = @"C:\Users\V-pc\Documents\Coffee\Coffee\AssetsUser";
+    public string AssetsUserPath = @"C:\Users\V-pc\Documents\yчёба\RiderProjects\Coffee\Coffee\AssetsUser";
 
     private string _Name;
     private float _Price;
@@ -31,7 +32,7 @@ public class MenuPageViewModel : PageViewModelBase
 
     private Dish _newDish = new Dish();
     
-    private ObservableCollection<Dish> _dish;
+    private ObservableCollection<Dish> _dishes;
     private ObservableCollection<Category> _category;
     private ObservableCollection<DishCategory> _dishCategories;
     
@@ -48,10 +49,10 @@ public class MenuPageViewModel : PageViewModelBase
     }
     
     
-    public ObservableCollection<Dish> Dish
+    public ObservableCollection<Dish> Dishes
     {
-        get => _dish;
-        set => this.RaiseAndSetIfChanged(ref _dish, value);
+        get => _dishes;
+        set => this.RaiseAndSetIfChanged(ref _dishes, value);
     }
     
     public ObservableCollection<Category> Category
@@ -113,7 +114,7 @@ public class MenuPageViewModel : PageViewModelBase
 
     public MenuPageViewModel()
     {
-        Dish = new ObservableCollection<Dish>(Helper.GetContext().Dishes.ToList());
+        Dishes = new ObservableCollection<Dish>(Helper.GetContext().Dishes.ToList());
         Category = new ObservableCollection<Category>(Helper.GetContext().Categories.ToList());
         DishCategories = new ObservableCollection<DishCategory>(Helper.GetContext().DishCategories.ToList());
         
@@ -137,28 +138,30 @@ public class MenuPageViewModel : PageViewModelBase
         DestImagePath = $"{AssetsUserPath}/{files[0].Name}";
         SelectedImagePath = ImagePath;
         ImageProgectPath = $"AssetsUser/{files[0].Name}";
-
     }
     
     private void AddDishImpl()
     {
         var context = Helper.GetContext();
-        // var categories = context.Categories.
-        //     Where(x => _category.Select(c => c.SelectCategory == true))
+
         var dish = Helper.GetContext().Dishes.FirstOrDefault(x=> x.Name == Name);
+        var selectCategory = _category.Where(c => c.SelectCategory == true).FirstOrDefault();
+        var categories = context.Categories.
+            Where(c => c.IdCategory == selectCategory.IdCategory).ToList();
         
         if (dish == null)
         {
             _newDish.Name = Name;
             _newDish.Price = Price;
             _newDish.Photo = ImageProgectPath;
-            // _newDish.DishCategories = _category.Select(c => new DishCategory(){ IdCategory = c.IdCategory, IdDishNavigation = c}).FirstOrDefault();
-            // _newDish.DishCategories = dish.
-            Helper.GetContext().Dishes.Add(_newDish);
-            Helper.GetContext().SaveChanges();
+            _newDish.DishCategories = categories.Select(x => new DishCategory()
+                { IdCategoryNavigation = x }).ToList();
             try
             {
                 File.Copy(ImagePath, DestImagePath, true);
+                Helper.GetContext().Dishes.Add(_newDish);
+                Helper.GetContext().SaveChanges();
+                Dishes.Add(_newDish);
                 MessageBoxManager.GetMessageBoxStandard("Успех", "Блюдо добавлено", ButtonEnum.Ok, Icon.Success).ShowAsync();
             }
             catch (Exception e)
@@ -168,14 +171,17 @@ public class MenuPageViewModel : PageViewModelBase
         }
         else
         {
-            MessageBoxManager.GetMessageBoxStandard("Ошибка", "Неверно указаны двнные", ButtonEnum.Ok, Icon.Error).ShowAsync();
+            MessageBoxManager.GetMessageBoxStandard("Ошибка", "Неверно указаны данные", ButtonEnum.Ok, Icon.Error).ShowAsync();
         }
     }
 
-    public void RemoveDishImpl(Dish d)
+    public void RemoveDishImpl(DishCategory dc)
     {
-        _dish.Remove(d);
-        Dish dish = db.Dishes.Where(p => p.IdDish == d.IdDish).FirstOrDefault();
+        var dish = Dishes.Where(d => d.IdDish == dc.IdDish).FirstOrDefault();
+
+        _dishCategories.Remove(dc);
+        _dishes.Remove(dish);
+        db.DishCategories.Remove(dc);
         db.Dishes.Remove(dish);
         db.SaveChanges();
     }

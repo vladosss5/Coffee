@@ -5,6 +5,7 @@
              xmlns:coffee="clr-namespace:Coffee"
              xmlns:vm="using:Coffee.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:CompileBindings="True"
              x:Class="Coffee.Views.MenuPageView"
              x:DataType="vm:MenuPageViewModel"
              x:Name="ThisPage">

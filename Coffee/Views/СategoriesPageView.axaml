@@ -48,7 +48,7 @@
                             <Image Source="{Binding Photo,
                                         Converter={StaticResource BitmapAssetValueConverter}}"
                                    MaxHeight="20" VerticalAlignment="Center"
-                                   HorizontalAlignment="Right" Margin="5"/>
+                                   HorizontalAlignment="Center" Margin="5"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

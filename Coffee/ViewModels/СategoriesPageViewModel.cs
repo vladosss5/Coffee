@@ -24,7 +24,6 @@ public class СategoriesPageViewModel : PageViewModelBase
     public string ImagePath;
     public string DestImagePath;
     public string ImageProgectPath;
-    
     public string AssetsUserPath = @"C:\Users\V-pc\Documents\yчёба\RiderProjects\Coffee\Coffee\AssetsUser";
     
     private string _Name;
@@ -127,7 +126,6 @@ public class СategoriesPageViewModel : PageViewModelBase
             try
             {
                 File.Copy(ImagePath, DestImagePath, true);
-                Categories.Add(_newCategory);
                 Helper.GetContext().Categories.Add(_newCategory);
                 Helper.GetContext().SaveChanges();
                 MessageBoxManager.GetMessageBoxStandard("Успех", "Категория добавлена", ButtonEnum.Ok, Icon.Success).ShowAsync();
