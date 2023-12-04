@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\V-pc\\Documents\\yчёба\\RiderProjects\\Coffee\\Coffee\\Coffee.csproj": {}
+    "C:\\Users\\v-pc\\Documents\\yчёба\\Avalonia\\Coffee\\Coffee\\Coffee.csproj": {}
   },
   "projects": {
-    "C:\\Users\\V-pc\\Documents\\yчёба\\RiderProjects\\Coffee\\Coffee\\Coffee.csproj": {
+    "C:\\Users\\v-pc\\Documents\\yчёба\\Avalonia\\Coffee\\Coffee\\Coffee.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\V-pc\\Documents\\yчёба\\RiderProjects\\Coffee\\Coffee\\Coffee.csproj",
+        "projectUniqueName": "C:\\Users\\v-pc\\Documents\\yчёба\\Avalonia\\Coffee\\Coffee\\Coffee.csproj",
         "projectName": "Coffee",
-        "projectPath": "C:\\Users\\V-pc\\Documents\\yчёба\\RiderProjects\\Coffee\\Coffee\\Coffee.csproj",
-        "packagesPath": "C:\\Users\\V-pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\V-pc\\Documents\\yчёба\\RiderProjects\\Coffee\\Coffee\\obj\\",
+        "projectPath": "C:\\Users\\v-pc\\Documents\\yчёба\\Avalonia\\Coffee\\Coffee\\Coffee.csproj",
+        "packagesPath": "C:\\Users\\v-pc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\v-pc\\Documents\\yчёба\\Avalonia\\Coffee\\Coffee\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\V-pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\v-pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -113,7 +113,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -103,6 +103,7 @@ public class СategoriesPageViewModel : PageViewModelBase
         {
             Title = "Выберите изображение",
             AllowMultiple = false,
+            FileTypeFilter = new []{FilePickerFileTypes.ImageAll}
         });
 
         ImagePath = Convert.ToString(files[0].Path.LocalPath);
@@ -115,8 +116,7 @@ public class СategoriesPageViewModel : PageViewModelBase
     private void AddCategoryImpl()
     {
         var context = Helper.GetContext();
-        // var categories = context.Categories.
-        //     Where(x => _category.Select(c => c.SelectCategory == true))
+        
         var category = Helper.GetContext().Categories.FirstOrDefault(x=> x.Name == Name);
         
         if (category == null)
